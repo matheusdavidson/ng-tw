@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# script: compiled files
+/scripts/.compiled/**/*.js
+/scripts/node_modules

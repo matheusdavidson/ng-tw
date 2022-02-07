@@ -1,0 +1,1 @@
+ng build ng-tw --prod

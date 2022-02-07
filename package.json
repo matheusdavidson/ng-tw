@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+		"release:major": "cd ./scripts && npm run release:major",
+		"release:minor": "cd ./scripts && npm run release:minor",
+		"release:patch": "cd ./scripts && npm run release:patch",
+		"build:dev": "./scripts/build.sh",
+		"build:prod": "./scripts/build-prod.sh"
   },
   "private": true,
   "dependencies": {
