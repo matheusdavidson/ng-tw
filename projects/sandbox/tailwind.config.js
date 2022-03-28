@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors');
 console.log('colors.indigo', colors.indigo);
 module.exports = {
     mode: 'jit',
-    content: ['projects/sandbox/src/**/*.{html,ts,scss}', 'projects/sandbox/src/**/*.{html,ts}'],
+    content: ['projects/sandbox/src/**/*.{html,ts,scss}', 'projects/sandbox/src/**/*.{html,ts}', 'projects/ng-tw/src/**/*.{html,ts}'],
     theme: {
         extend: {
             colors: {

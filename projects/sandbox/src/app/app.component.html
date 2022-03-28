@@ -1,3 +1,33 @@
+<div class="mb-24">
+    <div class="text-lg p-4"><span class="text-gray-400">Select:</span> Usage</div>
+
+    <div class="flex flex-col divide-y">
+
+        <div class="flex space-x-3 items-center p-4">
+            <div class="w-2/12">Basic</div>
+
+            <div class="flex space-x-3 items-center">
+                <tw-select
+                    [formControl]="selectControl"
+                    [disabled]="disabled"
+                >
+                    <tw-option>Select an option</tw-option>
+                    <tw-option
+                        *ngFor="let item of options"
+                        [value]="item.value"
+                    >
+                        {{item.label}}
+                    </tw-option>
+                </tw-select>
+
+                <div>
+                    Selected Value: {{ selectControl.value ? selectControl.value : '---' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
     <div class="text-lg p-4"><span class="text-gray-400">Button:</span> Layout and Colors</div>
 
@@ -237,7 +267,7 @@
         >
             Button size
         </button>
-        
+
         <button
             tw-button
             layout="flat"
@@ -246,7 +276,7 @@
         >
             Button size
         </button>
-        
+
         <button
             tw-button
             layout="flat"
@@ -255,7 +285,7 @@
         >
             Button size
         </button>
-        
+
         <button
             tw-button
             layout="flat"
