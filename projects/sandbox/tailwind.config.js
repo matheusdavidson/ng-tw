@@ -1,9 +1,13 @@
 const colors = require('tailwindcss/colors');
-console.log('colors.indigo', colors.indigo);
+
 module.exports = {
     mode: 'jit',
     content: ['projects/sandbox/src/**/*.{html,ts,scss}', 'projects/sandbox/src/**/*.{html,ts}', 'projects/ng-tw/src/**/*.{html,ts}'],
+    darkMode: false, // or 'media' or 'class'
     theme: {
+        fontFamily: {
+            sans: ['"Inter"'],
+        },
         extend: {
             colors: {
                 primary: { ...colors.indigo, DEFAULT: colors.indigo[500] },

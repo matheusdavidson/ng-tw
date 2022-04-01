@@ -8,3 +8,7 @@ body {
     background-color: #fafafa;
     color: #000000de;
 }
+
+.container {
+    @apply w-full max-w-[1280px] my-0 mx-auto block relative;
+}

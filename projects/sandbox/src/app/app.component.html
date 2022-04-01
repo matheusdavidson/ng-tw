@@ -1,298 +1,243 @@
-<div class="mb-24">
-    <div class="text-lg p-4"><span class="text-gray-400">Select:</span> Usage</div>
-
-    <div class="flex flex-col divide-y">
-
-        <div class="flex space-x-3 items-center p-4">
-            <div class="w-2/12">Basic</div>
-
-            <div class="flex space-x-3 items-center">
-                <tw-select
-                    [formControl]="selectControl"
-                    [disabled]="disabled"
-                >
-                    <tw-option>Select an option</tw-option>
-                    <tw-option
-                        *ngFor="let item of options"
-                        [value]="item.value"
+<div class="pt-16">
+    <nav class="fixed top-0 z-40 w-full border-b bg-gray-50 shadow border-transparent">
+        <div class="container mx-auto flex-1 px-4 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center pr-4">
+                    <a
+                        href="/"
+                        aria-label="Nuxt Content Logo"
+                        class="font-bold text-xl"
                     >
-                        {{item.label}}
-                    </tw-option>
-                </tw-select>
+                        <img
+                            src="/assets/images/logo.png"
+                            alt="Angular Tailwind"
+                            class="w-32 light-img"
+                        >
+                    </a>
+                </div>
+                <div class="flex-1 flex justify-start w-4/6">
+                </div>
+                <div class="lg:w-1/5 flex items-center pl-4 lg:pl-8 justify-between">
+                    <div class="flex items-center">
+                        <a
+                            href="/releases"
+                            class="font-semibold leading-none text-gray-700 hover:text-primary-500 text-base mr-4"
+                        >
+                            v0.0.1
+                        </a>
 
-                <div>
-                    Selected Value: {{ selectControl.value ? selectControl.value : '---' }}
+                        <a
+                            href="https://twitter.com/mtdade"
+                            target="_blank"
+                            title="Twitter"
+                            name="Twitter"
+                            class="text-gray-700 hover:text-primary-500 ml-4 hidden lg:block"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-twitter w-5 h-5"
+                            >
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a
+                            href="https://github.com/matheusdavidson/ng-tw"
+                            target="_blank"
+                            title="Github"
+                            name="Github"
+                            class="text-gray-700 hover:text-primary-500 ml-4 hidden lg:block"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-github w-5 h-5"
+                            >
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                        <button
+                            aria-label="Menu"
+                            class="lg:hidden p-2 rounded-md text-gray-700 focus:outline-none -mr-2"
+                        >
+                            <svg
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                class="w-5 h-5"
+                            >
+                                <path d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </nav>
 
-<div>
-    <div class="text-lg p-4"><span class="text-gray-400">Button:</span> Layout and Colors</div>
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="flex flex-wrap relative">
+            <aside class="w-full lg:w-1/5 lg:block fixed lg:relative inset-0 mt-16 lg:mt-0 z-30 bg-white lg:bg-transparent hidden">
+                <div class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)">
+                    <ul class="p-4 lg:py-8 lg:pl-0 lg:pr-8">
+                        <li class="mb-4 active">
+                            <p class="mb-2 text-gray-500 uppercase tracking-wider font-bold text-sm lg:text-xs">Getting started</p>
+                            <ul>
+                                <li class="text-gray-700">
+                                    <a
+                                        href="/"
+                                        class="px-2 rounded font-medium py-1 hover:text-primary-500 flex items-center justify-between"
+                                    >
+                                        Introduction
+                                    </a>
+                                </li>
+                                <li class="text-gray-700">
+                                    <a
+                                        href="/installation"
+                                        class="px-2 rounded font-medium py-1 hover:text-primary-500 flex items-center justify-between text-primary-500 bg-primary-100 hover:text-primary-500"
+                                        aria-current="page"
+                                    >
+                                        Installation
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-    <div class="flex flex-col divide-y">
+                        <li class="mb-4 active">
+                            <p class="mb-2 text-gray-500 uppercase tracking-wider font-bold text-sm lg:text-xs">Components</p>
+                            <ul>
+                                <li class="text-gray-700">
+                                    <a
+                                        href="/"
+                                        class="px-2 rounded font-medium py-1 hover:text-primary-500 flex items-center justify-between"
+                                    >
+                                        Button
+                                    </a>
+                                </li>
+                                <li class="text-gray-700">
+                                    <a
+                                        href="/installation"
+                                        class="px-2 rounded font-medium py-1 hover:text-primary-500 flex items-center justify-between"
+                                    >
+                                        Notification
+                                    </a>
+                                </li>
+                                <li class="text-gray-700">
+                                    <a
+                                        href="/installation"
+                                        class="px-2 rounded font-medium py-1 hover:text-primary-500 flex items-center justify-between"
+                                    >
+                                        Progress Bar
+                                    </a>
+                                </li>
+                                <li class="text-gray-700">
+                                    <a
+                                        href="/installation"
+                                        class="px-2 rounded font-medium py-1 hover:text-primary-500 flex items-center justify-between"
+                                    >
+                                        Select
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
 
-        <div class="flex space-x-3 items-center p-4">
-            <div class="w-2/12">Basic</div>
-
-            <div class="flex space-x-3">
-                <button tw-button>
-                    Basic
-                </button>
-
-                <button
-                    tw-button
-                    color="primary"
-                >
-                    Primary
-                </button>
-
-                <button
-                    tw-button
-                    color="secondary"
-                >
-                    Secondary
-                </button>
-
-                <button
-                    tw-button
-                    color="danger"
-                >
-                    Danger
-                </button>
-
-                <button
-                    tw-button
-                    disabled
-                >
-                    Disabled
-                </button>
-
-                <a
-                    tw-button
-                    disabled
-                    href="https://www.google.com"
-                    target="_blank"
-                >
-                    Link
-                </a>
+            <div class="flex flex-wrap-reverse w-full lg:w-4/5">
+                <div class="w-full py-4 lg:pt-8 lg:pb-4 border-gray-400 lg:w-3/4 lg:border-l lg:border-r">
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    teste
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div class="w-full lg:w-1/4 block relative">
+                    <div class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)">
+                        teste
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="flex space-x-3 items-center p-4">
-            <div class="w-2/12">Raised</div>
-
-            <div class="flex space-x-3">
-                <button
-                    tw-button
-                    layout="raised"
-                >
-                    Basic
-                </button>
-
-                <button
-                    tw-button
-                    color="primary"
-                    layout="raised"
-                >
-                    Primary
-                </button>
-
-                <button
-                    tw-button
-                    color="secondary"
-                    layout="raised"
-                >
-                    Secondary
-                </button>
-
-                <button
-                    tw-button
-                    color="danger"
-                    layout="raised"
-                >
-                    Danger
-                </button>
-
-                <button
-                    tw-button
-                    layout="raised"
-                    disabled
-                >
-                    Disabled
-                </button>
-
-                <a
-                    tw-button
-                    disabled
-                    layout="raised"
-                    href="https://www.google.com"
-                    target="_blank"
-                >
-                    Link
-                </a>
-            </div>
-        </div>
-
-        <div class="flex space-x-3 items-center p-4">
-            <div class="w-2/12">Stroked</div>
-
-            <div class="flex space-x-3">
-                <button
-                    tw-button
-                    layout="stroked"
-                >
-                    Basic
-                </button>
-
-                <button
-                    tw-button
-                    color="primary"
-                    layout="stroked"
-                >
-                    Primary
-                </button>
-
-                <button
-                    tw-button
-                    color="secondary"
-                    layout="stroked"
-                >
-                    Secondary
-                </button>
-
-                <button
-                    tw-button
-                    color="danger"
-                    layout="stroked"
-                >
-                    Danger
-                </button>
-
-                <button
-                    tw-button
-                    layout="stroked"
-                    disabled
-                >
-                    Disabled
-                </button>
-
-                <a
-                    tw-button
-                    disabled
-                    layout="stroked"
-                    href="https://www.google.com"
-                    target="_blank"
-                >
-                    Link
-                </a>
-            </div>
-        </div>
-
-        <div class="flex space-x-3 items-center p-4">
-            <div class="w-2/12">Flat</div>
-
-            <div class="flex space-x-3">
-                <button
-                    tw-button
-                    layout="flat"
-                >
-                    Basic
-                </button>
-
-                <button
-                    tw-button
-                    color="primary"
-                    layout="flat"
-                >
-                    Primary
-                </button>
-
-                <button
-                    tw-button
-                    color="secondary"
-                    layout="flat"
-                >
-                    Secondary
-                </button>
-
-                <button
-                    tw-button
-                    color="danger"
-                    layout="flat"
-                >
-                    Danger
-                </button>
-
-                <button
-                    tw-button
-                    layout="flat"
-                    disabled
-                >
-                    Disabled
-                </button>
-
-                <a
-                    tw-button
-                    disabled
-                    layout="flat"
-                    href="https://www.google.com"
-                    target="_blank"
-                >
-                    Link
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="text-lg p-4 pt-8"><span class="text-gray-400">Button:</span> Sizes</div>
-
-    <div class="p-3 space-x-3">
-        <button
-            tw-button
-            layout="flat"
-            color="primary"
-            size="xs"
-        >
-            Button size
-        </button>
-
-        <button
-            tw-button
-            layout="flat"
-            color="primary"
-            size="sm"
-        >
-            Button size
-        </button>
-
-        <button
-            tw-button
-            layout="flat"
-            color="primary"
-            size="md"
-        >
-            Button size
-        </button>
-
-        <button
-            tw-button
-            layout="flat"
-            color="primary"
-            size="lg"
-        >
-            Button size
-        </button>
-
-        <button
-            tw-button
-            layout="flat"
-            color="primary"
-            size="xl"
-        >
-            Button size
-        </button>
     </div>
 </div>
