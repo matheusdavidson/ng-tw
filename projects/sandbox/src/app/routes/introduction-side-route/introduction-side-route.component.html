@@ -1,0 +1,13 @@
+<nav class="side-navigation-container">
+    <p class="title">On this page</p>
+    <ul>
+        <li *ngFor="let item of navigation">
+            <a
+                [routerLink]="[item.link]"
+                [fragment]="item.fragment || null"
+            >
+                {{ item.label }}
+            </a>
+        </li>
+    </ul>
+</nav>
