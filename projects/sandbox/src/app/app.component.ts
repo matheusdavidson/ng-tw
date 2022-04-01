@@ -33,6 +33,43 @@ export class AppComponent {
     //     { label: 'Twenty', value: 'value-20' },
     // ];
 
+    public navigation: any[] = [
+        {
+            label: 'Getting Started',
+            links: [
+                {
+                    label: 'Introduction',
+                    link: '/',
+                },
+                {
+                    label: 'Installation',
+                    link: '/installation',
+                },
+            ],
+        },
+        {
+            label: 'Components',
+            links: [
+                {
+                    label: 'Button',
+                    link: '/components/button',
+                },
+                {
+                    label: 'Notification',
+                    link: '/components/notification',
+                },
+                {
+                    label: 'Progress Bar',
+                    link: '/components/progress-bar',
+                },
+                {
+                    label: 'Select',
+                    link: '/components/select',
+                },
+            ],
+        },
+    ];
+
     public disabled: boolean = false;
 
     public selectControl: FormControl = new FormControl({ value: 'value-1', disabled: false });
