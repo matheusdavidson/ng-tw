@@ -44,7 +44,6 @@
 <div class="content-footer">
     <div class="bottom-navigation-container">
         <span [hidden]="bottomNavigation?.first !== null"></span>
-        <span [hidden]="bottomNavigation?.last !== null"></span>
 
         <a
             *ngIf="bottomNavigation?.first as first"
@@ -63,6 +62,9 @@
             </svg>
             <span class="truncate">{{first.label}}</span>
         </a>
+
+        <span [hidden]="bottomNavigation?.last !== null"></span>
+
         <a
             *ngIf="bottomNavigation?.last as last"
             [routerLink]="[last.link]"

@@ -6,6 +6,14 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./routes/introduction-route/introduction-route.module').then((m) => m.IntroductionRouteModule),
     },
+    {
+        path: 'installation',
+        loadChildren: () => import('./routes/installation-route/installation-route.module').then((m) => m.InstallationRouteModule),
+    },
+    {
+        path: 'components',
+        loadChildren: () => import('./routes/component-route/component-route.module').then((m) => m.ComponentRouteModule),
+    },
 ];
 
 @NgModule({
