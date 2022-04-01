@@ -7,7 +7,12 @@
         <b>ng-tw</b> is a package to help you build a complete web application with Angular and Tailwind CSS. It's <b>an implementation of tailwind</b> components that requires javascript to run, <b>the logic</b> of these components <b>runs on angular</b>.
     </p>
 
-    <h2 id="components" class="text-2xl">Components</h2>
+    <h2
+        id="components"
+        class="text-2xl"
+    >
+        Components
+    </h2>
 
     <div>
         <div
@@ -35,3 +40,45 @@
         </div>
     </div>
 </article>
+
+<div class="content-footer">
+    <div class="bottom-navigation-container">
+        <span [hidden]="bottomNavigation?.first !== null"></span>
+        <span [hidden]="bottomNavigation?.last !== null"></span>
+
+        <a
+            *ngIf="bottomNavigation?.first as first"
+            [routerLink]="[first.link]"
+            class="first"
+        >
+            <svg
+                fill="currentColor"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd"
+                ></path>
+            </svg>
+            <span class="truncate">{{first.label}}</span>
+        </a>
+        <a
+            *ngIf="bottomNavigation?.last as last"
+            [routerLink]="[last.link]"
+            class="last"
+        >
+            <span class="truncate">{{last.label}}</span>
+            <svg
+                fill="currentColor"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                ></path>
+            </svg>
+        </a>
+    </div>
+</div>

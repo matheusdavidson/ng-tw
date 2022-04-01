@@ -59,3 +59,27 @@ body {
         }
     }
 }
+
+.bottom-navigation-container {
+    @apply grid grid-cols-2 gap-2 lg:px-8 pt-4 border-t;
+
+    a {
+        @apply text-primary-500 font-bold hover:underline flex items-center;
+
+        &.first {
+            @apply justify-start;
+        }
+
+        &.last {
+            @apply justify-end;
+        }
+    }
+
+    svg {
+        @apply w-4 h-4 mr-1 flex-shrink-0;
+    }
+}
+
+.content-footer {
+    @apply pt-6;
+}

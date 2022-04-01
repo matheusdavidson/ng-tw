@@ -13,6 +13,12 @@ export class IntroductionSideRouteComponent implements OnInit {
             fragment: 'components',
             link: '/',
         },
+        {
+            label: 'Source',
+            alt: '',
+            fragment: 'source',
+            link: '/',
+        },
     ];
 
     constructor() {}

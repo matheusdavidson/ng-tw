@@ -25,6 +25,14 @@ export class IntroductionRouteComponent implements OnInit {
         },
     ];
 
+    public bottomNavigation: any = {
+        first: null,
+        last: {
+            label: 'Installation',
+            link: '/installation',
+        },
+    };
+
     constructor() {}
 
     ngOnInit(): void {}
