@@ -56,6 +56,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     @Input() public disabled: boolean = false;
     @Input() public id: string = `tw-select-${_uniqueIdCounter++}`;
     @Input() public compareWith: (o1: any, o2: any) => boolean = (o1: any, o2: any) => o1 === o2;
+    @Input()
+    get value(): any {
+        return this.innerValue;
+    }
+    set value(newValue: any) {
+        this.selectOption(newValue, null, false);
+    }
 
     @ViewChild('trigger', { static: true }) public trigger!: ElementRef;
     @ContentChildren(OptionComponent, { descendants: true }) public options!: QueryList<OptionComponent>;
@@ -63,15 +70,13 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     public onChange = (value: any) => {};
     public onTouched = () => {};
 
-    public value: any = null;
+    public innerValue: any = null;
     public htmlValue: any = null;
 
     public wasTouched: boolean = false;
     public isOpen: boolean = false;
-
     public overlayWidth!: string;
 
-    private _onResizeTimeout: any = null;
     private _keyManager!: ActiveDescendantKeyManager<OptionComponent>;
 
     /** Combined stream of all of the child options' change events. */
@@ -91,20 +96,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         );
     }) as Observable<OptionSelectionChange>;
 
-    @HostListener('window:resize')
-    public detectResize(): void {
-        // //
-        // // Clear timeout
-        // if (this._onResizeTimeout) clearTimeout(this._onResizeTimeout);
-        // //
-        // // Set timeout
-        // this._onResizeTimeout = setTimeout(() => {
-        //     console.log(this.trigger.nativeElement.offsetWidth);
-        //     console.log(this.trigger.nativeElement.offsetHeight);
-        // }, 470);
-    }
-
-    constructor(public cdr: ChangeDetectorRef, private readonly zone: NgZone) {}
+    constructor(public cdr: ChangeDetectorRef, private readonly zone: NgZone, private readonly liveAnnouncer: LiveAnnouncer) {}
 
     ngOnInit(): void {}
 
@@ -112,13 +104,21 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         this._initKeyManager();
 
         this.optionSelectionChanges.subscribe((event) => {
-            this.onSelect(event.source, event.isUserInput, event.content);
+            this.onSelect(event.source, event.isUserInput, event.innerHTML);
             this.cdr.markForCheck();
+        });
+
+        this.options.changes.pipe(startWith(null)).subscribe(() => {
+            // Defer setting the value in order to avoid the "Expression
+            // has changed after it was checked" errors from Angular.
+            Promise.resolve().then(() => {
+                this.selectOption(this.innerValue, null, false, true);
+            });
         });
     }
 
     writeValue(value: any) {
-        this.value = value;
+        this.selectOption(value, null, false);
     }
 
     registerOnChange(onChange: any) {
@@ -163,7 +163,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     closePanel() {
         //
         // Update manager active item
-        if (this.value) this._updateKeyManagerActiveItem(this.value);
+        if (this.innerValue) this._updateKeyManagerActiveItem(this.innerValue);
 
         // close
         this.isOpen = false;
@@ -173,17 +173,38 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         this.closePanel();
     }
 
-    selectOption(value: any) {
-        this.value = value;
+    selectOption(newValue: any, innerHTML: string | null, touched: boolean, forceUpdate = false) {
+        //
+        // Do nothing if selected is the same as the current value
+        if (this.compareWith(this.innerValue, newValue) && forceUpdate === false) return;
 
-        this.onChange(value);
-        this.markAsTouched();
+        //
+        // Set new value
+        this.innerValue = newValue;
+
+        //
+        // On change event
+        this.onChange(newValue);
+        // mark as touched if this was made by a user interaction
+        if (touched === true) this.markAsTouched();
+
+        //
+        // Skip if we don't have options
+        if (!this.options) return;
+
+        //
+        // Update content
+        this.updateContent(innerHTML, newValue);
+
+        //
+        // Update manager active item
+        this._updateKeyManagerActiveItem(newValue);
     }
 
-    onSelect(source: OptionComponent, isUserInput: boolean, content: ElementRef) {
+    onSelect(source: OptionComponent, isUserInput: boolean, innerHTML: string) {
         //
         // Validate value is different
-        if (this.value === source.value) return this.closePanel();
+        if (this.innerValue === source.value) return this.closePanel();
 
         //
         // Loop options and deselect all except the selected one
@@ -195,23 +216,33 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
 
         //
         // Select option
-        this.selectOption(source.value);
-
-        //
-        // Update content
-        this.updateContent(content, source.value);
-
-        //
-        // Update manager active item
-        this._updateKeyManagerActiveItem(this.value);
+        this.selectOption(source.value, innerHTML, true);
 
         //
         // Close
         this.closePanel();
     }
 
-    updateContent(content: ElementRef, value: any) {
-        this.htmlValue = value ? content.nativeElement.innerHTML : '';
+    updateContent(newInnerHTML: string | null, value: any) {
+        //
+        // Set innerHTML
+        let innerHTML: string = '';
+
+        //
+        // Get option inner html if not provided
+        // @TODO: find out why this.htmlValue changes from null to '' when we first click on the select trigger, this find runs for each select list at start and we don't need that
+        // possibly we would check and get inside this code only if newInnerHTML is null
+        if (!newInnerHTML) {
+            const option = this.options.find((option) => this.compareWith(option.value, value));
+            innerHTML = option?.contentElement?.nativeElement?.innerHTML || '';
+        }
+        //
+        // innerHTML provided
+        else {
+            innerHTML = newInnerHTML;
+        }
+
+        this.htmlValue = value ? innerHTML : '';
     }
 
     handleKeydown(event: KeyboardEvent) {
@@ -244,6 +275,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
             manager.activeItem.selectViaInteraction();
         } else {
             manager.onKeydown(event);
+
+            // // We set a duration on the live announcement, because we want the live element to be
+            // // cleared after a while so that users can't navigate to it using the arrow keys.
+            // this.liveAnnouncer.announce((manager.activeItem as OptionComponent)?.contentElement?.nativeElement?.innerHTML, 10000);
         }
     }
 
@@ -279,8 +314,3 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         }
     }
 }
-
-//
-// set scroll to selected option
-// element scroll is okay on the second time i open the panel
-// but not on the first time

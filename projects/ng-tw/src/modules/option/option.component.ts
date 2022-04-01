@@ -16,7 +16,7 @@ export class OptionSelectionChange<T = any> {
         /** Whether the change in the option's value was a result of a user action. */
         public isUserInput: boolean = false,
         /** Content element */
-        public content: ElementRef
+        public innerHTML: string = ''
     ) {}
 }
 
@@ -50,7 +50,7 @@ export class OptionComponent<T = any> implements OnInit {
 
     /** Emits the selection change event. */
     private _emitSelectionChangeEvent(isUserInput = false): void {
-        this.onSelectionChange.emit(new OptionSelectionChange<T>(this, isUserInput, this.contentElement));
+        this.onSelectionChange.emit(new OptionSelectionChange<T>(this, isUserInput, this.contentElement?.nativeElement?.innerHTML || ''));
     }
 
     /** Selects the option. */
