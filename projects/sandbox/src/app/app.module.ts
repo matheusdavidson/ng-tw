@@ -3,12 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TwButtonModule, TwSelectModule } from 'ng-tw';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MarkdownModule } from 'ngx-markdown';
+
+import 'prismjs';
+import 'prismjs/components/prism-typescript.min.js';
+import 'prismjs/components/prism-scss.min.js';
+import 'prismjs/components/prism-bash.min.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, TwButtonModule, TwSelectModule, ReactiveFormsModule],
+    imports: [BrowserModule, AppRoutingModule, MarkdownModule.forRoot()],
     providers: [],
     bootstrap: [AppComponent],
 })

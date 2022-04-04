@@ -1,3 +1,46 @@
+<article class="prose max-w-none lg:px-8">
+    <h1 id="installation">
+        Installation
+    </h1>
+
+    <p>Add <code class="tw-code">ng-tw</code>, <code class="tw-code">tailwind</code> and <code class="tw-code">@angular/cdk</code> dependency to your project:</p>
+
+    <markdown [data]="markdownInstall"></markdown>
+    <br>
+
+    <p>We use <code class="tw-code">@angular/cdk</code> mostly for overlay components like notification, select and others, in order to make it work on a minimum setup you'll need to import their css in your <code class="tw-code">style.scss</code>:</p>
+
+    <markdown [data]="markdownCDKCSSImport"></markdown>
+
+    <h2 id="tailwind-config">
+        Tailwind Config
+    </h2>
+
+    <p>
+        First you'll need to setup tailwind on your angular project, to do that you can follow the
+        <a
+            class="text-primary underline"
+            href="https://tailwindcss.com/docs/guides/angular"
+            target="_blank"
+        >setup documentation</a> on tailwind website.
+    </p>
+
+    <p>With angular +12 the process is pretty straight forward and since this lib was made with angular +13 you shouldn't have much problems to setup tailwind.</p>
+
+    <h4>Color Config</h4>
+    <p>The theme design is based on a set of colors to make it easy to use inside components.</p>
+
+    <ul class="list-disc list-inside">
+        <li><code class="tw-code">primary</code></li>
+        <li><code class="tw-code">secondary</code></li>
+        <li><code class="tw-code">danger</code></li>
+    </ul>
+
+    <h4>Color config in <code class="tw-code">tailwind.config.js</code></h4>
+
+    <markdown [data]="markdownTailwindColorConfig"></markdown>
+</article>
+
 <div class="content-footer">
     <div class="bottom-navigation-container">
         <span [hidden]="bottomNavigation?.first !== null"></span>

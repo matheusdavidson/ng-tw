@@ -3,10 +3,17 @@
 @import 'tailwindcss/utilities';
 @import '@angular/cdk/overlay-prebuilt.css';
 
+@import 'prismjs/themes/prism-okaidia.css';
+@import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+@import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+
+@import './theme/markdown';
+
 html,
 body {
     background-color: #fafafa;
     color: #000000de;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -17,15 +24,8 @@ body {
     font-size: 1rem;
     line-height: 1.75;
 
-    code {
-        color: #1a202c;
-        font-weight: 400;
-        font-size: 0.875em;
-        background-color: #f7fafc;
-        padding: 0.25rem;
-        border-width: 1px;
-        border-color: #edf2f7;
-        border-radius: 0.25rem;
+    .tw-code {
+        @apply bg-slate-100 text-slate-700 border border-slate-200 rounded p-1 text-sm font-light;
     }
 
     h1 {
@@ -36,8 +36,16 @@ body {
         @apply text-2xl font-semibold mt-7 mb-5 pb-2 border-b border-gray-200;
     }
 
+    h4 {
+        @apply text-base font-semibold mb-2 mt-6;
+    }
+
     p {
-        @apply py-4;
+        @apply mb-4;
+    }
+
+    h1 + p {
+        @apply mt-4;
     }
 }
 

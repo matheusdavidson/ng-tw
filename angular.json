@@ -64,7 +64,7 @@
             "styles": [
               "projects/sandbox/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/marked/marked.min.js"]
           },
           "configurations": {
             "production": {

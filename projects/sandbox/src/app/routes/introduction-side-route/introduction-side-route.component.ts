@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class IntroductionSideRouteComponent implements OnInit {
     public navigation: any[] = [
         {
-            label: 'Components',
+            label: 'Introduction',
             alt: '',
-            fragment: 'components',
+            fragment: 'introduction',
             link: '/',
         },
         {
-            label: 'Source',
+            label: 'Components',
             alt: '',
-            fragment: 'source',
+            fragment: 'components',
             link: '/',
         },
     ];

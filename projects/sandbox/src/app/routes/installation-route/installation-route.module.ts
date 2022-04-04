@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InstallationRouteComponent } from './installation-route.component';
 import { InstallationSideRouteComponent } from '../installation-side-route/installation-side-route.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 
 const routes: Routes = [
     {
@@ -18,6 +19,6 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [InstallationRouteComponent, InstallationSideRouteComponent],
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(routes), MarkdownModule],
 })
 export class InstallationRouteModule {}
