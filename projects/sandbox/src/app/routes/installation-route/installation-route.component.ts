@@ -28,7 +28,7 @@ export class InstallationRouteComponent implements OnInit {
         @import '@angular/cdk/overlay-prebuilt.css';
         \`\`\`
     `;
-    
+
     public markdownTailwindColorConfig = `
         \`\`\`js
         const colors = require('tailwindcss/colors');
@@ -56,6 +56,20 @@ export class InstallationRouteComponent implements OnInit {
 
         ### Disabled Variants
         > It's also important to note that you should add the \`disabled\` variant for \`opacity\` and \`backgroundColor\`.
+    `;
+
+    public markdownTailwindContentConfig = `
+        \`\`\`js
+        module.exports = {
+            //...
+            content: [
+                //...
+                './node_modules/ng-tw/**/*'
+                //...
+            ],
+            //...
+        }
+        \`\`\`
     `;
 
     constructor() {}
