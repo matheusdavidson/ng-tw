@@ -1,3 +1,338 @@
+<article class="prose max-w-none lg:px-8">
+    <h1 id="button">
+        Button
+    </h1>
+
+    <p>To use the button component, first you need to load on your module:</p>
+
+    <markdown [data]="markdownLoad"></markdown>
+
+    <h2>Demo</h2>
+    <h3 id="layout-and-colors">Layout and Colors</h3>
+
+    <div class="demo-container">
+
+        <div class="demo-row">
+            <div class="demo-row-title">Basic</div>
+
+            <div class="demo-row-content">
+                <button tw-button>
+                    Basic
+                </button>
+
+                <button
+                    tw-button
+                    color="primary"
+                >
+                    Primary
+                </button>
+
+                <button
+                    tw-button
+                    color="secondary"
+                >
+                    Secondary
+                </button>
+
+                <button
+                    tw-button
+                    color="danger"
+                >
+                    Danger
+                </button>
+
+                <button
+                    tw-button
+                    disabled
+                >
+                    Disabled
+                </button>
+
+                <a
+                    tw-button
+                    disabled
+                    href="https://www.google.com"
+                    target="_blank"
+                >
+                    Link
+                </a>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Raised</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    layout="raised"
+                >
+                    Basic
+                </button>
+
+                <button
+                    tw-button
+                    color="primary"
+                    layout="raised"
+                >
+                    Primary
+                </button>
+
+                <button
+                    tw-button
+                    color="secondary"
+                    layout="raised"
+                >
+                    Secondary
+                </button>
+
+                <button
+                    tw-button
+                    color="danger"
+                    layout="raised"
+                >
+                    Danger
+                </button>
+
+                <button
+                    tw-button
+                    layout="raised"
+                    disabled
+                >
+                    Disabled
+                </button>
+
+                <a
+                    tw-button
+                    disabled
+                    layout="raised"
+                    href="https://www.google.com"
+                    target="_blank"
+                >
+                    Link
+                </a>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Stroked</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    layout="stroked"
+                >
+                    Basic
+                </button>
+
+                <button
+                    tw-button
+                    color="primary"
+                    layout="stroked"
+                >
+                    Primary
+                </button>
+
+                <button
+                    tw-button
+                    color="secondary"
+                    layout="stroked"
+                >
+                    Secondary
+                </button>
+
+                <button
+                    tw-button
+                    color="danger"
+                    layout="stroked"
+                >
+                    Danger
+                </button>
+
+                <button
+                    tw-button
+                    layout="stroked"
+                    disabled
+                >
+                    Disabled
+                </button>
+
+                <a
+                    tw-button
+                    disabled
+                    layout="stroked"
+                    href="https://www.google.com"
+                    target="_blank"
+                >
+                    Link
+                </a>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Flat</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    layout="flat"
+                >
+                    Basic
+                </button>
+
+                <button
+                    tw-button
+                    color="primary"
+                    layout="flat"
+                >
+                    Primary
+                </button>
+
+                <button
+                    tw-button
+                    color="secondary"
+                    layout="flat"
+                >
+                    Secondary
+                </button>
+
+                <button
+                    tw-button
+                    color="danger"
+                    layout="flat"
+                >
+                    Danger
+                </button>
+
+                <button
+                    tw-button
+                    layout="flat"
+                    disabled
+                >
+                    Disabled
+                </button>
+
+                <a
+                    tw-button
+                    disabled
+                    layout="flat"
+                    href="https://www.google.com"
+                    target="_blank"
+                >
+                    Link
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <h3>Sizes</h3>
+
+    <div class="demo-container">
+        <div class="demo-row">
+
+            <button
+                tw-button
+                layout="flat"
+                color="primary"
+                size="xs"
+            >
+                Button size
+            </button>
+
+            <button
+                tw-button
+                layout="flat"
+                color="primary"
+                size="sm"
+            >
+                Button size
+            </button>
+
+            <button
+                tw-button
+                layout="flat"
+                color="primary"
+                size="md"
+            >
+                Button size
+            </button>
+
+            <button
+                tw-button
+                layout="flat"
+                color="primary"
+                size="lg"
+            >
+                Button size
+            </button>
+
+            <button
+                tw-button
+                layout="flat"
+                color="primary"
+                size="xl"
+            >
+                Button size
+            </button>
+        </div>
+    </div>
+
+    <h2 id="customizing">Customizing</h2>
+    <p>In an utility first environment it's tricky to build customizable components, we must have a default state first but also being able to customize things around, with that in mind <code class="tw-code">ng-tw</code> uses as a role an <code class="tw-code">@Input</code> called <code class="tw-code">ignore</code> and <code class="tw-code">class</code>, this will let you take advantage of the current classes applied but still being able to customize the component around the tailwind classes you want.</p>
+
+    <p>The role here is: Ignore what you don't want and add in your classes</p>
+
+    <h4>Customize padding and colors</h4>
+    <p>Padding and color can be customized with pre made values, the purpose of this section is to show how you could customize if needed</p>
+    <button
+        tw-button
+        layout="raised"
+        color="primary"
+        ignore="bg-primary text-white py-2"
+        class="bg-yellow-500 text-black py-8"
+    >
+        Custom button
+    </button>
+
+    <markdown
+        class="w-full"
+        [data]="markdownCustomizePaddingColor"
+    ></markdown>
+
+    <p>You can ignore any class generated by <code class="tw-code">ng-tw</code>, anything, just have a look on developer tools, ignore and add the class you want.</p>
+
+    <h4>Button group</h4>
+
+    <div class="flex items-center">
+        <button
+            tw-button
+            layout="stroked"
+            ignore="rounded border"
+            class="rounded-l border-y border-l"
+        >
+            Left
+        </button>
+        <button
+            tw-button
+            layout="stroked"
+            ignore="rounded"
+        >
+            Center
+        </button>
+        <button
+            tw-button
+            layout="stroked"
+            ignore="rounded border"
+            class="rounded-r border-y border-r"
+        >
+            Right
+        </button>
+    </div>
+
+    <markdown [data]="markdownButtonGroup"></markdown>
+</article>
+
 <div class="content-footer">
     <div class="bottom-navigation-container">
         <span [hidden]="bottomNavigation?.first !== null"></span>

@@ -1,6 +1,6 @@
 <div class="pt-16">
     <nav class="fixed top-0 z-40 w-full border-b bg-gray-50 shadow border-transparent">
-        <div class="container mx-auto flex-1 px-4 lg:px-8">
+        <div class="container mx-auto flex-1 px-4 xl:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center pr-4">
                     <a
@@ -17,14 +17,14 @@
                 </div>
                 <div class="flex-1 flex justify-start w-4/6">
                 </div>
-                <div class="lg:w-1/5 flex items-center pl-4 lg:pl-8 justify-end">
+                <div class="xl:w-1/5 flex items-center pl-4 xl:pl-8 justify-end">
                     <div class="flex items-center">
                         <a
                             href="https://twitter.com/mtdade"
                             target="_blank"
                             title="Twitter"
                             name="Twitter"
-                            class="text-gray-700 hover:text-primary-500 ml-4 hidden lg:block"
+                            class="text-gray-700 hover:text-primary-500 ml-4 hidden xl:block"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@
                             target="_blank"
                             title="Github"
                             name="Github"
-                            class="text-gray-700 hover:text-primary-500 ml-4 hidden lg:block"
+                            class="text-gray-700 hover:text-primary-500 ml-4 hidden xl:block"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@
                         </a>
                         <button
                             aria-label="Menu"
-                            class="lg:hidden p-2 rounded-md text-gray-700 focus:outline-none -mr-2"
+                            class="xl:hidden p-2 rounded-md text-gray-700 focus:outline-none -mr-2"
                         >
                             <svg
                                 fill="none"
@@ -81,16 +81,16 @@
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 lg:px-8">
+    <div class="container mx-auto px-4 xl:px-8">
         <div class="flex flex-wrap relative">
-            <aside class="w-full lg:w-1/5 lg:block fixed lg:relative inset-0 mt-16 lg:mt-0 z-30 bg-white lg:bg-transparent hidden">
-                <div class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)">
-                    <ul class="p-4 lg:py-8 lg:pl-0 lg:pr-8">
+            <aside class="w-full xl:w-1/5 xl:block fixed xl:relative inset-0 mt-16 xl:mt-0 z-30 bg-white xl:bg-transparent hidden">
+                <div class="xl:sticky xl:top-16 overflow-y-auto h-full xl:h-auto xl:max-h-(screen-16)">
+                    <ul class="p-4 xl:py-8 xl:pl-0 xl:pr-8">
                         <li
                             class="mb-4 active"
                             *ngFor="let item of navigation"
                         >
-                            <p class="mb-2 text-gray-400 uppercase tracking-wider font-bold text-sm lg:text-xs">{{item.label}}</p>
+                            <p class="mb-2 text-gray-400 uppercase tracking-wider font-bold text-sm xl:text-xs">{{item.label}}</p>
                             <ul>
                                 <li
                                     class="text-gray-700"
@@ -111,13 +111,13 @@
                 </div>
             </aside>
 
-            <div class="flex flex-wrap-reverse w-full lg:w-4/5">
-                <div class="w-full py-4 lg:pt-8 lg:pb-4 border-gray-200 lg:w-3/4 lg:border-l lg:border-r">
+            <div class="flex flex-wrap-reverse w-full xl:w-4/5">
+                <div class="w-full py-4 xl:pt-8 xl:pb-4 border-gray-200 xl:w-3/4 xl:border-l xl:border-r">
                     <router-outlet></router-outlet>
                 </div>
 
-                <div class="w-full lg:w-1/4 block relative">
-                    <div class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)">
+                <div class="w-full xl:w-1/4 block relative">
+                    <div class="xl:sticky xl:top-16 overflow-y-auto h-full xl:h-auto xl:max-h-(screen-16)">
                         <router-outlet name="side"></router-outlet>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
     </div>
 
     <footer class="h-16 relative w-full border-t z-20">
-        <div class="container h-full w-full flex mx-auto px-4 lg:px-8 items-center justify-between">
+        <div class="container h-full w-full flex mx-auto px-4 xl:px-8 items-center justify-between">
             <div class="flex items-end">
                 <a
                     href="https://github.com/matheusdavidson"

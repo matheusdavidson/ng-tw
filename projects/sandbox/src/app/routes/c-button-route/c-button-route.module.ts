@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CButtonRouteComponent } from './c-button-route.component';
 import { CButtonSideRouteComponent } from '../c-button-side-route/c-button-side-route.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
+import { TwButtonModule } from 'ng-tw';
 
 const routes: Routes = [
     {
@@ -18,6 +20,6 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [CButtonRouteComponent, CButtonSideRouteComponent],
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(routes), MarkdownModule, TwButtonModule],
 })
 export class CButtonRouteModule {}
