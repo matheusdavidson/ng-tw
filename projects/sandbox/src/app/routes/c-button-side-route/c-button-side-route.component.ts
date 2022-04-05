@@ -14,7 +14,7 @@ export class CButtonSideRouteComponent implements OnInit {
             link: '/components/button',
         },
         {
-            label: 'Lauout and Colors',
+            label: 'Layout and Colors',
             alt: '',
             fragment: 'layout-and-colors',
             link: '/components/button',

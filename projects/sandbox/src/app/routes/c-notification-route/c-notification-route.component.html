@@ -1,3 +1,79 @@
+<article class="prose max-w-none lg:px-8">
+    <h1 id="notification">
+        Notification
+    </h1>
+
+    <p>To use the notification component you need to load it on <code class="tw-code">app.module.ts</code> using <code class="tw-code">forRoot()</code>:</p>
+
+    <markdown [data]="markdownLoad"></markdown>
+
+    <h2>Demo</h2>
+    <h3 id="basic-usage">Basic usage</h3>
+
+    <div class="demo-container">
+
+        <div class="demo-row">
+            <div class="demo-row-title">Info</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    color="primary"
+                    (click)="openNotification('info', 'Notification', 'This is an info message')"
+                >
+                    Info notification
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Success</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    color="primary"
+                    ignore="hover:bg-primary-50 text-primary"
+                    class="hover:bg-green-100 text-green-600"
+                    (click)="openNotification('success', 'Notification', 'This is a success message')"
+                >
+                    Success notification
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Warning</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    color="primary"
+                    ignore="hover:bg-primary-50 text-primary"
+                    class="hover:bg-yellow-50 text-yellow-600"
+                    (click)="openNotification('warning', 'Notification', 'This is a warning message')"
+                >
+                    Warning notification
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Danger</div>
+
+            <div class="demo-row-content">
+                <button
+                    tw-button
+                    color="danger"
+                    (click)="openNotification('danger', 'Notification', 'This is a danger message')"
+                >
+                    Danger notification
+                </button>
+            </div>
+        </div>
+    </div>
+</article>
+
 <div class="content-footer">
     <div class="bottom-navigation-container">
         <span [hidden]="bottomNavigation?.first !== null"></span>

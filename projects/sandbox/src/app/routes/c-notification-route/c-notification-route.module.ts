@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CNotificationSideRouteComponent } from '../c-notification-side-route/c-notification-side-route.component';
 import { CNotificationRouteComponent } from './c-notification-route.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
+import { TwButtonModule } from 'ng-tw';
 
 const routes: Routes = [
     {
@@ -18,6 +20,6 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [CNotificationSideRouteComponent, CNotificationRouteComponent],
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(routes), MarkdownModule, TwButtonModule],
 })
 export class CNotificationRouteModule {}
