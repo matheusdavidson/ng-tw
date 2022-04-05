@@ -1,6 +1,61 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { difference } from 'lodash';
-import { ConnectableObservable } from 'rxjs';
+
+type ColorType = 'basic' | 'primary' | 'secondary' | 'danger';
+
+// type TailwindColorType =
+//     | 'slate'
+//     | 'gray'
+//     | 'zinc'
+//     | 'neutral'
+//     | 'stone'
+//     | 'red'
+//     | 'orange'
+//     | 'amber'
+//     | 'yellow'
+//     | 'lime'
+//     | 'green'
+//     | 'emerald'
+//     | 'teal'
+//     | 'cyan'
+//     | 'sky'
+//     | 'blue'
+//     | 'indigo'
+//     | 'indigo'
+//     | 'violet'
+//     | 'purple'
+//     | 'fuchsia'
+//     | 'pink'
+//     | 'rose';
+// type ColorType = 'basic' | 'primary' | 'secondary' | 'danger' | TailwindColorType;
+
+// @TODO: Add support for tailwind colors
+// const tailwindColors: TailwindColorType[] = [
+//     'slate',
+//     'gray',
+//     'zinc',
+//     'neutral',
+//     'stone',
+//     'red',
+//     'orange',
+//     'amber',
+//     'yellow',
+//     'lime',
+//     'green',
+//     'emerald',
+//     'teal',
+//     'cyan',
+//     'sky',
+//     'blue',
+//     'indigo',
+//     'indigo',
+//     'violet',
+//     'purple',
+//     'fuchsia',
+//     'pink',
+//     'rose',
+// ];
+
 @Component({
     selector: 'button[tw-button], a[tw-button]',
     templateUrl: './button.component.html',
@@ -8,7 +63,7 @@ import { ConnectableObservable } from 'rxjs';
 })
 export class ButtonComponent implements OnInit, OnChanges {
     @Input() class: string = '';
-    @Input() public color: 'basic' | 'primary' | 'secondary' | 'danger' = 'basic';
+    @Input() public color: ColorType = 'basic';
     @Input() public layout: 'basic' | 'raised' | 'stroked' | 'flat' = 'basic';
     @Input() public size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'md';
     @Input() public ignore: string = '';
@@ -42,29 +97,34 @@ export class ButtonComponent implements OnInit, OnChanges {
                 primary: 'hover:bg-primary-50 text-primary',
                 secondary: 'hover:bg-secondary-50 text-secondary',
                 danger: 'hover:bg-danger-50 text-danger',
+                tailwind: 'hover:bg-{color}-50 text-{color}-600',
                 ignore: '',
             },
             raised: {
-                basic: 'hover:active:shadow-lg bg-white',
-                primary: 'hover:active:shadow-lg text-white bg-primary',
-                secondary: 'hover:active:shadow-lg text-white bg-secondary',
-                danger: 'hover:active:shadow-lg text-white bg-danger',
+                basic: 'bg-white',
+                primary: 'text-white bg-primary',
+                secondary: 'text-white bg-secondary',
+                danger: 'text-white bg-danger',
+                tailwind: 'text-white bg-{color}-600',
                 global: 'shadow-sm hover:active:shadow-lg',
                 ignore: '',
             },
             stroked: {
-                basic: 'border border-gray-200 hover:bg-gray-100',
-                primary: 'border border-gray-200 text-primary hover:bg-primary-50',
-                secondary: 'border border-gray-200 text-secondary hover:bg-secondary-100',
-                danger: 'border border-gray-200 text-danger hover:bg-danger-100',
-                global: 'bg-transparent',
+                basic: 'hover:bg-gray-100',
+                primary: 'text-primary hover:bg-primary-50',
+                secondary: 'text-secondary hover:bg-secondary-100',
+                danger: 'text-danger hover:bg-danger-100',
+                tailwind: 'text-{color}-600 hover:bg-{color}-200',
+                global: 'bg-transparent border border-gray-200',
                 ignore: '',
             },
             flat: {
-                basic: 'bg-white hover:active:shadow-lg',
-                primary: 'text-white bg-primary focus:ring-2 focus:ring-offset-2 focus:ring-primary-500',
-                secondary: 'text-white bg-secondary focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500',
-                danger: 'text-white bg-danger focus:ring-2 focus:ring-offset-2 focus:ring-danger-500',
+                basic: 'bg-white',
+                primary: 'text-white bg-primary focus:ring-primary-500',
+                secondary: 'text-white bg-secondary focus:ring-secondary-500',
+                danger: 'text-white bg-danger focus:ring-danger-500',
+                tailwind: 'text-white bg-{color}-600 focus:ring-{color}-600',
+                global: 'focus:ring-2 focus:ring-offset-2',
                 ignore: '',
             },
         },
@@ -154,6 +214,19 @@ export class ButtonComponent implements OnInit, OnChanges {
     }
 
     getLayoutClasses() {
+        // @TODO: add tailwind custom colors
+        // //
+        // // Get color key
+        // const colorKey: ColorType | 'tailwind' = tailwindColors.includes(this.color as TailwindColorType) ? 'tailwind' : this.color;
+        // // get color config
+        // let colorConfig = this._config.layout[this.layout][colorKey];
+        // // adjust for tailwind colors
+        // if (colorKey === 'tailwind') colorConfig = colorConfig.split('{color}').join(this.color);
+
+        // //
+        // // Get layout classes according and split values
+        // const layoutClasses: string[] = colorConfig.split();
+
         //
         // Get layout classes according and split values
         const layoutClasses: string[] = this._config.layout[this.layout][this.color].split(' ');
