@@ -17,6 +17,16 @@ export class CProgressBarRouteComponent implements OnInit {
         },
     };
 
+    public markdownLoad = `
+        \`\`\`typescript
+        import { TwProgressBarModule } from 'ng-tw';
+
+        @NgModule({
+            imports: [..., TwProgressBarModule],
+        });
+        \`\`\`
+    `;
+
     constructor() {}
 
     ngOnInit(): void {}

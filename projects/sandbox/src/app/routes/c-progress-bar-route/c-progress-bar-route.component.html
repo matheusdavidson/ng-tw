@@ -1,3 +1,57 @@
+<article class="prose max-w-none lg:px-8">
+    <h1 id="progress-bar">
+        Progress Bar
+    </h1>
+
+    <p>To use the progress bar component you need to load it in the module you'll use it:</p>
+
+    <markdown [data]="markdownLoad"></markdown>
+
+    <h2>Demo</h2>
+    <h3 id="basic-usage">Basic usage</h3>
+
+    <div class="demo-container">
+
+        <div class="demo-row">
+            <div class="demo-row-title">Determinate</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-progress-bar
+                    class="w-full"
+                    [height]="6"
+                    [value]="37"
+                ></tw-progress-bar>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Indeterminate</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-progress-bar
+                    class="w-full"
+                    [height]="6"
+                    mode="indeterminate"
+                ></tw-progress-bar>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Buffer</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-progress-bar
+                    class="w-full"
+                    mode="buffer"
+                    [height]="6"
+                    [value]="37"
+                    [bufferValue]="57"
+                ></tw-progress-bar>
+            </div>
+        </div>
+    </div>
+</article>
+
 <div class="content-footer">
     <div class="bottom-navigation-container">
         <span [hidden]="bottomNavigation?.first !== null"></span>
