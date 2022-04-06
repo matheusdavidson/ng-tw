@@ -1,0 +1,72 @@
+<div
+    class="relative w-full"
+    [style.height]="height + 'px'"
+>
+    <div aria-hidden="true">
+        <svg
+            width="100%"
+            [attr.height]="height"
+            focusable="false"
+            [class]="'animate-tw-progress-bar-buffer z-[0] ' + fill"
+            style="width: calc(100% + 10px)"
+        >
+            <defs>
+                <pattern
+                    [id]="bufferID"
+                    [attr.x]="height"
+                    y="0"
+                    [attr.width]="height * 2"
+                    [attr.height]="height"
+                    patternUnits="userSpaceOnUse"
+                >
+                    <circle
+                        [attr.cx]="height / 2"
+                        [attr.cy]="height / 2"
+                        [attr.r]="height / 2"
+                    />
+                </pattern>
+            </defs>
+
+            <rect
+                [attr.fill]="bufferFillValue"
+                width="100%"
+                height="100%"
+            />
+        </svg>
+    </div>
+
+    <!-- Progress: value -->
+    <div
+        [class]="'h-full ease-in-out duration-150 absolute top-0 left-0 z-[2] progress-bar-value ' + color"
+        [style.width]="mode !== 'indeterminate' ? value + '%' : null"
+        style="transition-property: width"
+    >
+    </div>
+
+    <div
+        class="h-full w-full absolute top-0 z-[2]"
+        [hidden]="mode !== 'indeterminate'"
+    >
+        <div [class]="'h-full w-full absolute top-0 progress-bar-indeterminate'">
+            <div [class]="'h-full w-full inline-block absolute top-0 left-0 z-[2] progress-bar-indeterminate-inner ' + color"></div>
+        </div>
+
+        <div [class]="'h-full w-full absolute top-0 progress-bar-indeterminate-2'">
+            <div [class]="'h-full w-full inline-block absolute top-0 left-0 z-[2] progress-bar-indeterminate-2-inner ' + color"></div>
+        </div>
+    </div>
+
+    <!-- Progress: buffer value - only in buffer mode -->
+    <div
+        [class]="'h-full ease-in-out duration-150 absolute top-0 left-0 z-[1] progress-bar-buffer-value ' + background"
+        [style.width]="mode === 'buffer' ? bufferValue + '%' : '0%'"
+        style="transition-property: width"
+    >
+    </div>
+
+    <!-- Progress: background - available when not buffer mode -->
+    <div
+        [class]="'w-full h-full absolute top-0 left-0 z-[0] ' + background"
+        [hidden]="mode === 'buffer'"
+    ></div>
+</div>
