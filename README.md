@@ -1,27 +1,86 @@
-# NgTw
+> This lib is still under construction however some components are still working.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+# Angular components for Tailwind CSS
 
-## Development server
+ng-tw is a set of components to use tailwind css with angular, created with love to the community.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Demo, playground and documentation
 
-## Code scaffolding
+https://ng-tw.mtda.me
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Install
 
-## Build
+Add `ng-tw`, `tailwind` and `@angular/cdk` dependency to your project:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash 
+npm install ng-tw @angular/cdk tailwindcss
+````
 
-## Running unit tests
+We use `@angular/cdk` mostly for overlay components like notification, select and others, in order to make it work on a minimum setup you'll need to import their css in your style.scss:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```scss 
+@import '@angular/cdk/overlay-prebuilt.css';
+```
 
-## Running end-to-end tests
+### Tailwind Config
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+First you'll need to setup tailwind on your angular project, to do that you can follow the setup documentation on tailwind website.
 
-## Further help
+With angular +12 the process is pretty straight forward and since this lib was made with angular +13 you shouldn't have much problems to setup tailwind.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Color config
+
+The theme design is based on a set of colors to make it easy to use inside components.
+
+- primary
+- secondary
+- danger
+- warning
+
+#### Color config in `tailwind.config.js`
+
+```typescript
+const colors = require('tailwindcss/colors');
+
+module.exports = {
+    //...
+    theme: {
+        extend: {
+            colors: {
+                primary: { ...colors.indigo, DEFAULT: colors.indigo[500] },
+                secondary: { ...colors.pink, DEFAULT: colors.pink[500] },
+                danger: { ...colors.red, DEFAULT: colors.red[500] },
+            },
+        },
+    },
+    variants: {
+        extend: {
+            opacity: ['disabled'],
+            backgroundColor: ['disabled'],
+        },
+    },
+    //...
+}
+```
+
+#### Disabled Variants
+
+> It's also important to note that you should add the disabled variant for opacity and backgroundColor.
+
+#### Content
+
+Tailwind uses purge to make the bundle size smaller, you'll need to setup the lib in the `content` section of your `tailwind.config.js` to make it work
+
+```js
+module.exports = {
+    //...
+    content: [..., './node_modules/ng-tw/**/*'],
+    //...
+}
+```
+
+## Further documentation
+
+For more instructions and documentation:
+
+https://ng-tw.mtda.me
