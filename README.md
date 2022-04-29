@@ -1,4 +1,4 @@
-> This lib is still under construction althought some components works fine
+> This lib is still under construction however some components are still working.
 
 # Angular components for Tailwind CSS
 
