@@ -17,7 +17,7 @@ import { TwNotificationModule } from 'ng-tw';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, MarkdownModule.forRoot(), TwNotificationModule.forRoot()],
+    imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), BrowserAnimationsModule, AppRoutingModule, MarkdownModule.forRoot(), TwNotificationModule.forRoot()],
     providers: [],
     bootstrap: [AppComponent],
 })

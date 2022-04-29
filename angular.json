@@ -51,7 +51,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sandbox",
+            "outputPath": "dist/sandbox/browser",
             "index": "projects/sandbox/src/index.html",
             "main": "projects/sandbox/src/main.ts",
             "polyfills": "projects/sandbox/src/polyfills.ts",
@@ -134,6 +134,65 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/sandbox/server",
+            "main": "projects/sandbox/server.ts",
+            "tsConfig": "projects/sandbox/tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "projects/sandbox/src/environments/environment.ts",
+                  "with": "projects/sandbox/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "sandbox:build:development",
+              "serverTarget": "sandbox:server:development"
+            },
+            "production": {
+              "browserTarget": "sandbox:build:production",
+              "serverTarget": "sandbox:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sandbox:build:production",
+              "serverTarget": "sandbox:server:production"
+            },
+            "development": {
+              "browserTarget": "sandbox:build:development",
+              "serverTarget": "sandbox:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
