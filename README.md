@@ -4,7 +4,7 @@
 
 ng-tw is a set of components to use tailwind css with angular, created with love to the community.
 
-### Instructions, documentation and demo/playground
+### Demo, playground and documentation
 
 https://ng-tw.mtda.me
 
