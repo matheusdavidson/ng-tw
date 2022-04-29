@@ -193,9 +193,12 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
   },
-  "defaultProject": "ng-tw"
+  "defaultProject": "sandbox"
 }
