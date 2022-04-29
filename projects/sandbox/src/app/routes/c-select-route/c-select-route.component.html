@@ -1,3 +1,89 @@
+<article class="prose max-w-none lg:px-8">
+    <h1 id="select">
+        Progress Bar
+    </h1>
+
+    <p>To use the select component you need to load it in the module you'll use it:</p>
+
+    <markdown [data]="markdownLoad"></markdown>
+
+    <h2>Demo</h2>
+    <h3 id="basic-usage">Basic usage</h3>
+
+    <div class="demo-container">
+
+        <div class="demo-row">
+            <div class="demo-row-title">Basic</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-select
+                    class="w-64 max-w-full"
+                    [formControl]="selectControl"
+                >
+                    <tw-option>Select an option</tw-option>
+                    <tw-option
+                        *ngFor="let item of options"
+                        [value]="item.value"
+                    >
+                        {{item.label}}
+                    </tw-option>
+                </tw-select>
+            </div>
+
+            <div class="md:flex-1">
+                Selected Value: {{ selectControl.value ? selectControl.value : '---' }}
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Compare with</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-select
+                    class="w-64 max-w-full"
+                    [formControl]="selectCompareWithControl"
+                    [compareWith]="compareWith"
+                >
+                    <tw-option>Select an option</tw-option>
+                    <tw-option
+                        *ngFor="let item of options"
+                        [value]="item"
+                    >
+                        {{item.label}}
+                    </tw-option>
+                </tw-select>
+            </div>
+
+            <div class="md:flex-1">
+                Selected Value: {{ selectCompareWithControl.value ? (selectCompareWithControl.value | json) : '---' }}
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">Compare with <br> Initial value</div>
+            <div class="demo-row-content md:flex-1">
+                <tw-select
+                    class="w-64 max-w-full"
+                    [formControl]="selectCompareWithInitialValueControl"
+                    [compareWith]="compareWith"
+                >
+                    <tw-option>Select an option</tw-option>
+                    <tw-option
+                        *ngFor="let item of options"
+                        [value]="item"
+                    >
+                        {{item.label}}
+                    </tw-option>
+                </tw-select>
+            </div>
+
+            <div class="md:flex-1">
+                Selected Value: {{ selectCompareWithInitialValueControl.value ? (selectCompareWithInitialValueControl.value | json) : '---' }}
+            </div>
+        </div>
+    </div>
+</article>
+
 <div class="content-footer">
     <div class="bottom-navigation-container">
         <span [hidden]="bottomNavigation?.first !== null"></span>

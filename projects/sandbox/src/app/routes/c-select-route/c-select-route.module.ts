@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { CSelectSideRouteComponent } from '../c-select-side-route/c-select-side-route.component';
 import { CSelectRouteComponent } from './c-select-route.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
+import { TwSelectModule } from 'ng-tw';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -18,6 +21,6 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [CSelectSideRouteComponent, CSelectRouteComponent],
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(routes), MarkdownModule, TwSelectModule, ReactiveFormsModule],
 })
 export class CSelectRouteModule {}
