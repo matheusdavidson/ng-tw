@@ -6,6 +6,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Inp
  * the component definition.
  */
 let _uniqueIdCounter = 0;
+declare var location: any;
 
 @Component({
     selector: 'tw-progress-bar',
@@ -156,7 +157,7 @@ export class ProgressBarComponent implements OnInit {
 
     @HostBinding('class') class: string = 'overflow-hidden';
 
-    private readonly _path = location ? location.pathname.split('#')[0] : '';
+    private readonly _path = typeof location !== 'undefined' && location ? location.pathname.split('#')[0] : '';
 
     public bufferID: string = `${this.id}-buffer`;
     public bufferFillValue: string = `url(${this._path}#${this.bufferID})`;

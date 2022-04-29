@@ -112,7 +112,7 @@ export class OptionComponent<T = any> implements OnInit {
     }
 
     scrollIntoView() {
-        this.element.nativeElement.scrollIntoView();
+        if (typeof this.element.nativeElement.scrollIntoView !== 'undefined') this.element.nativeElement.scrollIntoView();
     }
 
     setActiveStylesWithDelay(): void {
