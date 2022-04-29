@@ -1,6 +1,12 @@
+> This lib is still under construction althought some components works fine
+
 # Angular components for Tailwind CSS
 
 ng-tw is a set of components to use tailwind css with angular, created with love to the community.
+
+### Instructions, documentation and demo/playground
+
+https://ng-tw.mtda.me
 
 ### Install
 
@@ -72,3 +78,9 @@ module.exports = {
     //...
 }
 ```
+
+## Further documentation
+
+For more instructions and documentation:
+
+https://ng-tw.mtda.me
