@@ -7,6 +7,20 @@
         <b>ng-tw</b> is a package to help you build a complete web application with Angular and Tailwind CSS. It's <b>an implementation of tailwind</b> components that requires javascript to run, <b>the logic</b> of these components <b>runs on angular</b>.
     </p>
 
+    <button
+        [twDropdownTriggerFor]="dropdown"
+        class="button"
+    >
+        Open dropdown
+    </button>
+
+    <tw-dropdown #dropdown>
+        <div tw-dropdown-item (click)="teste()">teste</div>
+        <div tw-dropdown-item>teste 2</div>
+        <div tw-dropdown-item>teste 4</div>
+    </tw-dropdown>
+
+
     <h2 id="components">
         Components
     </h2>
@@ -15,6 +29,7 @@
         <div
             class="mt-3 flex"
             *ngFor="let item of components"
+            [routerLink]="[item.link]"
         >
             <span class="mt-px mr-3 flex-shrink-0">
                 <svg
