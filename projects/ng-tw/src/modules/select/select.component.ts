@@ -287,6 +287,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
             .withTypeAhead()
             .withVerticalOrientation()
             .withHomeAndEnd()
+            .withWrap()
             .withAllowedModifierKeys(['shiftKey']);
 
         this._keyManager.change.pipe().subscribe(() => {
