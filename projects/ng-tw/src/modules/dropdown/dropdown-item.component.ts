@@ -18,7 +18,8 @@ let _uniqueIdCounter = 0;
         '[attr.aria-disabled]': 'disabled.toString()',
         '[attr.disabled]': 'disabled || null',
         '[attr.role]': 'menuitem',
-        '[class]': 'itemClass + " " + (selected === true ? activeClass : inactiveClass)',
+        '[class]': 'itemClass + " " + (disabled === true ? disabledClass : "")',
+        '(click)': '_checkDisabled($event)',
     },
 })
 export class DropdownItemComponent implements FocusableOption {
@@ -28,9 +29,9 @@ export class DropdownItemComponent implements FocusableOption {
     public active: boolean = false;
     public selected: boolean = false;
 
-    public itemClass: string = 'w-full block px-4 py-2 text-sm text-gray-700 text-left focus:bg-gray-100 focus:text-gray-900';
-    public activeClass: string = ''; //'bg-gray-100 text-gray-900';
-    public inactiveClass: string = ''; //'text-gray-700';
+    public itemClass: string =
+        'w-full block px-4 py-2 text-sm text-gray-700 text-left focus:bg-gray-100 focus:text-gray-900 hover:bg-gray-100 hover:text-gray-900';
+    public disabledClass: string = 'text-gray-400 hover:disabled:bg-transparent hover:disabled:text-gray-400';
 
     constructor(private readonly element: ElementRef<HTMLElement>) {}
 
@@ -46,5 +47,13 @@ export class DropdownItemComponent implements FocusableOption {
 
     focus() {
         this.element.nativeElement.focus();
+    }
+
+    /** Prevents the default element actions if it is disabled. */
+    _checkDisabled(event: Event): void {
+        if (this.disabled === true) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 }

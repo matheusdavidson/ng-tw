@@ -20,6 +20,7 @@ module.exports = {
         extend: {
             opacity: ['disabled'],
             backgroundColor: ['disabled'],
+            textColor: ['disabled'],
         },
     },
     plugins: [],

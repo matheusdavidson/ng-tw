@@ -62,20 +62,21 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
         const keyCode = event.keyCode;
         const manager = this._keyManager;
 
-        // manager.setFocusOrigin('keyboard');
-        // manager.onKeydown(event);
-
         if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
             manager.setFocusOrigin('keyboard');
         } else if (keyCode === ESCAPE) {
             this.destroyDropdown();
         } else if (keyCode === ENTER) {
-            // @TODO: Handle enter without need of timeout
-            // added to close items with no click or href actions, elements with those will autoclose itself already
-            // if i don't do this, the dropdown will close before the item is clicked
-            setTimeout(() => {
-                this.destroyDropdown();
-            });
+            //
+            // Check attribute is not disabled
+            if ((<any>event?.target)?.ariaDisabled !== 'true') {
+                // @TODO: Handle enter without need of timeout
+                // added to close items with no click or href actions, elements with those will autoclose itself already
+                // if i don't do this, the dropdown will close before the item is clicked
+                setTimeout(() => {
+                    this.destroyDropdown();
+                });
+            }
         }
 
         manager.onKeydown(event);
