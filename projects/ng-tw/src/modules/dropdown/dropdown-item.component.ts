@@ -34,46 +34,9 @@ export class DropdownItemComponent implements FocusableOption {
 
     constructor(private readonly element: ElementRef<HTMLElement>) {}
 
-    /**
-     * This method sets display styles on the option to make it appear
-     * active. This is used by the ActiveDescendantKeyManager so key
-     * events will display the proper options as active on arrow key events.
-     */
-    setActiveStyles(): void {
-        console.log('here');
-        if (!this.active) {
-            this.active = true;
-            this.scrollIntoView();
-        }
-    }
-
-    /**
-     * This method removes display styles on the option that made it appear
-     * active. This is used by the ActiveDescendantKeyManager so key
-     * events will display the proper options as active on arrow key events.
-     */
-    setInactiveStyles(): void {
-        if (this.active) {
-            this.active = false;
-        }
-    }
-
     /** Gets the label to be used when determining whether the option should be focused. */
     getLabel(): string {
         return this.element.nativeElement.textContent ? this.element.nativeElement.textContent : '';
-    }
-
-    scrollIntoView() {
-        if (typeof this.element.nativeElement.scrollIntoView !== 'undefined') this.element.nativeElement.scrollIntoView();
-    }
-
-    select(): void {
-        console.log('select');
-        //
-        // Validate disabled
-        if (this.disabled === true) return;
-        // set selected
-        this.selected = true;
     }
 
     /** Used to set the `tabindex`. */
@@ -82,7 +45,6 @@ export class DropdownItemComponent implements FocusableOption {
     }
 
     focus() {
-        console.log('focus item');
         this.element.nativeElement.focus();
     }
 }
