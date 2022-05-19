@@ -62,7 +62,29 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
     constructor(private overlay: Overlay) {}
 
     ngAfterContentInit(): void {
+        //
+        // Start key manager
         this._keyManager = new FocusKeyManager(this.items).withWrap().withTypeAhead().withHomeAndEnd();
+
+        //
+        // Listen for changes on the items
+        this.items.changes.subscribe((itemsList: QueryList<DropdownItemComponent>) => {
+            // Move focus to another item, if the active item is removed from the list.
+            // We need to debounce the callback, because multiple items might be removed
+            // in quick succession.
+            const manager = this._keyManager;
+
+            if (this.isDropdownOpen === true && manager.activeItem?._hasFocus()) {
+                const items = itemsList.toArray();
+                const index = Math.max(0, Math.min(items.length - 1, manager.activeItemIndex || 0));
+
+                if (items[index] && !items[index].disabled) {
+                    manager.setActiveItem(index);
+                } else {
+                    manager.setNextItemActive();
+                }
+            }
+        });
     }
 
     handleKeydown(event: KeyboardEvent) {

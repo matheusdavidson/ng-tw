@@ -1,5 +1,6 @@
 import { FocusableOption, InputModalityDetector } from '@angular/cdk/a11y';
-import { Component, ChangeDetectionStrategy, Input, ElementRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ChangeDetectionStrategy, Input, ElementRef, Inject } from '@angular/core';
 import { difference } from 'lodash';
 
 /**
@@ -37,7 +38,7 @@ export class DropdownItemComponent implements FocusableOption {
         ignore: '',
     };
 
-    constructor(private readonly element: ElementRef<HTMLElement>) {}
+    constructor(private readonly element: ElementRef<HTMLElement>, @Inject(DOCUMENT) private _document?: any) {}
 
     /** Gets the label to be used when determining whether the option should be focused. */
     getLabel(): string {
@@ -94,5 +95,14 @@ export class DropdownItemComponent implements FocusableOption {
         classes = [...classes, ...inputClasses];
 
         return classes?.length ? classes.join(' ') : '';
+    }
+
+    /** Returns the host DOM element. */
+    _getHostElement(): HTMLElement {
+        return this.element.nativeElement;
+    }
+
+    _hasFocus(): boolean {
+        return this._document && this._document.activeElement === this._getHostElement();
     }
 }
