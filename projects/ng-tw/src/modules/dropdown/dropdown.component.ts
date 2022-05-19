@@ -1,5 +1,5 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
+import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 import { OverlayRef, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
@@ -67,10 +67,18 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
 
         if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
             manager.setFocusOrigin('keyboard');
+        } else if (keyCode === ESCAPE) {
+            this.destroyDropdown();
+        } else if (keyCode === ENTER) {
+            // @TODO: Handle enter without need of timeout
+            // added to close items with no click or href actions, elements with those will autoclose itself already
+            // if i don't do this, the dropdown will close before the item is clicked
+            setTimeout(() => {
+                this.destroyDropdown();
+            });
         }
 
         manager.onKeydown(event);
-        event.stopPropagation();
     }
 
     focusFirstItem() {
