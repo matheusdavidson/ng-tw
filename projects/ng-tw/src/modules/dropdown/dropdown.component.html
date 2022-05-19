@@ -6,6 +6,7 @@
         aria-orientation="vertical"
         aria-labelledby="menu-button"
         tabindex="-1"
+        (keydown)="handleKeydown($event)"
     >
         <div class="py-1">
             <ng-content></ng-content>

@@ -1,3 +1,4 @@
+import { FocusableOption } from '@angular/cdk/a11y';
 import { Component, ChangeDetectionStrategy, Input, ElementRef } from '@angular/core';
 
 /**
@@ -20,14 +21,14 @@ let _uniqueIdCounter = 0;
         '[class]': 'itemClass + " " + (selected === true ? activeClass : inactiveClass)',
     },
 })
-export class DropdownItemComponent {
+export class DropdownItemComponent implements FocusableOption {
     @Input() public disabled: boolean = false;
     @Input() public id: string = `tw-dropdown-item-${_uniqueIdCounter++}`;
 
     public active: boolean = false;
     public selected: boolean = false;
 
-    public itemClass: string = 'block px-4 py-2 text-sm text-gray-700 active:bg-gray-100 active:text-gray-900';
+    public itemClass: string = 'w-full block px-4 py-2 text-sm text-gray-700 text-left focus:bg-gray-100 focus:text-gray-900';
     public activeClass: string = ''; //'bg-gray-100 text-gray-900';
     public inactiveClass: string = ''; //'text-gray-700';
 
@@ -78,5 +79,10 @@ export class DropdownItemComponent {
     /** Used to set the `tabindex`. */
     _getTabIndex(): string {
         return this.disabled ? '-1' : '0';
+    }
+
+    focus() {
+        console.log('focus item');
+        this.element.nativeElement.focus();
     }
 }

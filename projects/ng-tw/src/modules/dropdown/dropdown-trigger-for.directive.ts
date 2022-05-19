@@ -1,7 +1,9 @@
+import { FocusKeyManager } from '@angular/cdk/a11y';
 import { OverlayRef, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Directive, OnDestroy, Input, ElementRef, ViewContainerRef, AfterContentInit, ContentChildren, QueryList } from '@angular/core';
 import { Subscription, Observable, merge } from 'rxjs';
+import { DropdownItemComponent } from './dropdown-item.component';
 import { TwDropdownPanel } from './dropdown-panel.interface';
 
 @Directive({
@@ -11,7 +13,7 @@ import { TwDropdownPanel } from './dropdown-panel.interface';
         // '(keydown)': 'handleKeydown($event)',
     },
 })
-export class TwDropdownTriggerFor implements OnDestroy, AfterContentInit {
+export class TwDropdownTriggerFor implements OnDestroy {
     @Input('twDropdownTriggerFor') public dropdownPanel!: TwDropdownPanel;
 
     private isDropdownOpen = false;
@@ -19,8 +21,6 @@ export class TwDropdownTriggerFor implements OnDestroy, AfterContentInit {
     private dropdownClosingActionsSub = Subscription.EMPTY;
 
     constructor(private overlay: Overlay, private elementRef: ElementRef<HTMLElement>, private viewContainerRef: ViewContainerRef) {}
-
-    ngAfterContentInit(): void {}
 
     toggleDropdown(): void {
         this.isDropdownOpen ? this.destroyDropdown() : this.openDropdown();
@@ -67,6 +67,13 @@ export class TwDropdownTriggerFor implements OnDestroy, AfterContentInit {
         this.overlayRef.attach(templatePortal);
 
         this.dropdownClosingActionsSub = this.dropdownClosingActions().subscribe(() => this.destroyDropdown());
+
+        //
+        // Set focus on the first item
+        if (this.dropdownPanel.items?.length) {
+            console.log('set focus on first item');
+            this.dropdownPanel.focusFirstItem();
+        }
     }
 
     private dropdownClosingActions(): Observable<MouseEvent | void> {

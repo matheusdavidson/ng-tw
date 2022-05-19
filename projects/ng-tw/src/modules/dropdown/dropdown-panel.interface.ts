@@ -8,4 +8,5 @@ export interface TwDropdownPanel {
     readonly yPosition: 'top' | 'bottom';
     readonly xPosition: 'start' | 'end';
     readonly id: string;
+    readonly focusFirstItem: () => void;
 }
