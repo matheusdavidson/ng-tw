@@ -2,6 +2,7 @@ import { ElementRef, EventEmitter, QueryList, TemplateRef, ViewContainerRef } fr
 import { DropdownItemComponent } from './dropdown-item.component';
 
 export interface TwDropdownPanel {
+    templateRef: TemplateRef<any>;
     items: QueryList<DropdownItemComponent>;
     readonly closed: EventEmitter<void>;
     readonly isDropdownOpen: boolean;
