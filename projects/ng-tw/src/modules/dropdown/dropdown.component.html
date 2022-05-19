@@ -1,12 +1,13 @@
 <ng-template>
     <div
-        (click)="closed.emit()"
-        class="w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+        tabindex="-1"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
-        tabindex="-1"
+        [attr.id]="-1"
+        [class]="getClasses()"
         (keydown)="handleKeydown($event)"
+        (click)="closed.emit()"
     >
         <div class="py-1">
             <ng-content></ng-content>

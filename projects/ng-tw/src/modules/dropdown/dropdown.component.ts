@@ -16,6 +16,7 @@ import {
     ElementRef,
     ViewContainerRef,
 } from '@angular/core';
+import { difference } from 'lodash';
 import { Subscription, Observable, merge } from 'rxjs';
 import { DropdownItemComponent } from './dropdown-item.component';
 import { TwDropdownPanel } from './dropdown-panel.interface';
@@ -31,9 +32,7 @@ let _uniqueIdCounter = 0;
     templateUrl: './dropdown.component.html',
     styleUrls: ['./dropdown.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {
-        '[attr.id]': 'id',
-    },
+    host: {},
 })
 export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
     @ContentChildren(DropdownItemComponent, { descendants: true }) public items!: QueryList<DropdownItemComponent>;
@@ -46,11 +45,19 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
 
     @Input() public id: string = `tw-dropdown-${_uniqueIdCounter++}`;
 
+    @Input() public class: string = '';
+    @Input() public ignore: string = '';
+
     public isDropdownOpen = false;
 
     private overlayRef!: OverlayRef;
     private dropdownClosingActionsSub = Subscription.EMPTY;
     private _keyManager!: FocusKeyManager<DropdownItemComponent>;
+
+    private _config: any = {
+        class: 'rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none',
+        ignore: '',
+    };
 
     constructor(private overlay: Overlay) {}
 
@@ -157,5 +164,39 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
         if (this.overlayRef) {
             this.overlayRef.dispose();
         }
+    }
+
+    getClasses() {
+        //
+        // Hold classes
+        let classes: string[] = [];
+
+        //
+        // Set global config and classes
+        const config: any = this._config;
+        const globalClasses: string[] = config?.class ? config.class.split(' ').filter((item: string) => item) : [];
+
+        //
+        // Set @Input classes if available
+        const inputClasses: string[] = this.class ? this.class.split(' ').filter((item: string) => item) : [];
+
+        //
+        // Set ignore classes, global and @input
+        const globalIgnoreClasses: string[] = config?.ignore ? config.ignore.split(' ').filter((item: string) => item) : [];
+        const inputIgnoreClasses: string[] = config?.ignore ? config.ignore.split(' ').filter((item: string) => item) : [];
+
+        //
+        // Add global and disabled classes
+        classes = [...globalClasses];
+
+        //
+        // Filter global classes using global and @input ignore
+        classes = difference(classes, globalIgnoreClasses, inputIgnoreClasses);
+
+        //
+        // Add @input classes
+        classes = [...classes, ...inputClasses];
+
+        return classes?.length ? classes.join(' ') : '';
     }
 }
