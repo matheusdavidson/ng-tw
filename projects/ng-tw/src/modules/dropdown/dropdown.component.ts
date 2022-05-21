@@ -18,6 +18,8 @@ import {
 } from '@angular/core';
 import { difference } from 'lodash';
 import { Subscription, Observable, merge } from 'rxjs';
+import { TwDropdownConfig } from './dropdown-config.interface';
+import { TwDropdownConfigService } from './dropdown-config.service';
 import { DropdownItemComponent } from './dropdown-item.component';
 import { TwDropdownPanel } from './dropdown-panel.interface';
 
@@ -54,12 +56,9 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
     private dropdownClosingActionsSub = Subscription.EMPTY;
     private _keyManager!: FocusKeyManager<DropdownItemComponent>;
 
-    private _config: any = {
-        class: 'rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none',
-        ignore: '',
-    };
+    private _config: TwDropdownConfig['panel'] = this.dropdownConfig.config.panel;
 
-    constructor(private overlay: Overlay) {}
+    constructor(private readonly overlay: Overlay, private readonly dropdownConfig: TwDropdownConfigService) {}
 
     ngAfterContentInit(): void {
         //
@@ -208,7 +207,7 @@ export class DropdownComponent implements TwDropdownPanel, AfterContentInit {
         const inputIgnoreClasses: string[] = config?.ignore ? config.ignore.split(' ').filter((item: string) => item) : [];
 
         //
-        // Add global and disabled classes
+        // Add global classes
         classes = [...globalClasses];
 
         //

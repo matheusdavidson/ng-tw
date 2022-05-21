@@ -2,6 +2,8 @@ import { FocusableOption, InputModalityDetector } from '@angular/cdk/a11y';
 import { DOCUMENT } from '@angular/common';
 import { Component, ChangeDetectionStrategy, Input, ElementRef, Inject } from '@angular/core';
 import { difference } from 'lodash';
+import { TwDropdownConfig } from './dropdown-config.interface';
+import { TwDropdownConfigService } from './dropdown-config.service';
 
 /**
  * IDs need to be unique across components, so this counter exists outside of
@@ -32,13 +34,13 @@ export class DropdownItemComponent implements FocusableOption {
     public active: boolean = false;
     public selected: boolean = false;
 
-    private _config: any = {
-        class: 'w-full block px-4 py-2 text-sm text-gray-700 text-left focus:bg-gray-100 focus:text-gray-900 hover:bg-gray-100 hover:text-gray-900 outline-0',
-        disabled: 'disabled:text-gray-400 hover:disabled:bg-transparent hover:disabled:text-gray-400',
-        ignore: '',
-    };
+    private _config: TwDropdownConfig['items'] = this.dropdownConfig.config.items;
 
-    constructor(private readonly element: ElementRef<HTMLElement>, @Inject(DOCUMENT) private _document?: any) {}
+    constructor(
+        private readonly element: ElementRef<HTMLElement>,
+        private readonly dropdownConfig: TwDropdownConfigService,
+        @Inject(DOCUMENT) private _document?: any
+    ) {}
 
     /** Gets the label to be used when determining whether the option should be focused. */
     getLabel(): string {
@@ -71,7 +73,6 @@ export class DropdownItemComponent implements FocusableOption {
         // Set global config, classes and disabled
         const config: any = this._config;
         const globalClasses: string[] = config?.class ? config.class.split(' ').filter((item: string) => item) : [];
-        const globalDisabledClasses: string[] = config?.disabled ? config.disabled.split(' ').filter((item: string) => item) : [];
 
         //
         // Set @Input classes if available
@@ -84,7 +85,7 @@ export class DropdownItemComponent implements FocusableOption {
 
         //
         // Add global and disabled classes
-        classes = [...globalClasses, ...globalDisabledClasses];
+        classes = [...globalClasses];
 
         //
         // Filter global classes using global and @input ignore
