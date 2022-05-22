@@ -12,7 +12,7 @@
     </h2>
 
     <div>
-        <div
+        <a
             class="mt-3 flex"
             *ngFor="let item of components"
             [routerLink]="[item.link]"
@@ -35,7 +35,7 @@
             </span>
 
             {{item.label}}
-        </div>
+        </a>
     </div>
 </article>
 

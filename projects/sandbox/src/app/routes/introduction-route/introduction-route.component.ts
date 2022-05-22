@@ -12,6 +12,10 @@ export class IntroductionRouteComponent implements OnInit {
             link: '/components/button',
         },
         {
+            label: 'Dropdown',
+            link: '/components/dropdown',
+        },
+        {
             label: 'Notification',
             link: '/components/notification',
         },
