@@ -28,6 +28,7 @@ export interface TwButtonConfig {
             secondary: string;
             danger: string;
             tailwind: string;
+            global: string;
             ignore: string;
         };
         raised: {

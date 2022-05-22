@@ -71,7 +71,7 @@ export class ButtonComponent implements OnInit, OnChanges {
     @Input() public ignore: string = '';
 
     private _config: TwButtonConfig = this.buttonConfig.config;
-    
+
     constructor(private readonly elementRef: ElementRef, private readonly buttonConfig: TwButtonConfigService) {
         //
         // Get config according to inputs
@@ -150,7 +150,10 @@ export class ButtonComponent implements OnInit, OnChanges {
         //
         // Get layout classes according and split values
         const layoutClasses: string[] = this._config.layout[this.layout][this.color].split(' ');
+        const layoutGlobalClasses: string[] = this._config.layout[this.layout]?.global?.split(' ');
         const layoutIgnoreClasses: string[] = this._config.layout[this.layout].ignore.split(' ');
+        // add global classes
+        if (layoutGlobalClasses) layoutClasses.push(...layoutGlobalClasses);
         // filter ignored classes and remove empty strings
         const classes = difference(layoutClasses, layoutIgnoreClasses);
 

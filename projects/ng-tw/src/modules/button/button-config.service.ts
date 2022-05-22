@@ -42,6 +42,7 @@ export class TwButtonConfigService {
                 secondary: 'hover:bg-secondary-50 text-secondary',
                 danger: 'hover:bg-danger-50 text-danger',
                 tailwind: 'hover:bg-{color}-50 text-{color}-600',
+                global: '',
                 ignore: '',
             },
             raised: {
