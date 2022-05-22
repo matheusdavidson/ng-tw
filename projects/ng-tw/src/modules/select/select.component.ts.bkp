@@ -6,20 +6,21 @@ import {
     ContentChildren,
     ElementRef,
     forwardRef,
+    HostBinding,
+    HostListener,
     Input,
     NgZone,
     OnInit,
     QueryList,
+    SimpleChanges,
     ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { defer, merge, Observable, startWith, switchMap, take } from 'rxjs';
 import { OptionComponent, OptionSelectionChange } from '../option/option.component';
-import { A, DOWN_ARROW, ENTER, hasModifierKey, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
+import { A, DOWN_ARROW, ENTER, hasModifierKey, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
 import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
 import { difference } from 'lodash';
-import { TwSelectConfig } from './select-config.interface';
-import { TwSelectConfigService } from './select-config.service';
 
 /**
  * IDs need to be unique across components, so this counter exists outside of
@@ -33,23 +34,17 @@ let _uniqueIdCounter = 0;
     styleUrls: ['./select.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
-        '[attr.tabindex]': '0',
-        '[attr.role]': 'combobox',
-        '[attr.aria-autocomplete]': 'none',
+        role: 'combobox',
+        'aria-autocomplete': 'none',
         // TODO: the value for aria-haspopup should be `listbox`, but currently it's difficult
         // to sync into Google, because of an outdated automated a11y check which flags it as an invalid
         // value. At some point we should try to switch it back to being `listbox`.
-        // '[attr.aria-haspopup]': 'true',
-        '[class]': 'getClasses()',
+        'aria-haspopup': 'true',
         '[attr.id]': 'id',
         '[attr.aria-controls]': 'isOpen ? id + "-panel" : null',
         '[attr.aria-expanded]': 'isOpen',
         '[attr.aria-disabled]': 'disabled.toString()',
-        '[attr.aria-haspopup]': 'listbox',
-        '[attr.aria-labelledby]': 'listbox-label',
         '(keydown)': 'handleKeydown($event)',
-        '(click)': 'openPanel()',
-        cdkOverlayOrigin: '',
     },
     providers: [
         {
@@ -60,10 +55,10 @@ let _uniqueIdCounter = 0;
     ],
 })
 export class SelectComponent implements ControlValueAccessor, OnInit, AfterContentInit {
-    @Input() public class: string = '';
+    @Input() public class: string =
+        'bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
+    @Input() public panelClass: string = 'bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5';
     @Input() public ignore: string = '';
-    @Input() public panelClass: string = '';
-    @Input() public panelIgnoreClass: string = '';
     @Input() public placeholder: string = 'Select an option';
     @Input() public disabled: boolean = false;
     @Input() public id: string = `tw-select-${_uniqueIdCounter++}`;
@@ -79,6 +74,15 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     @ViewChild('trigger', { static: true }) public trigger!: ElementRef;
     @ContentChildren(OptionComponent, { descendants: true }) public options!: QueryList<OptionComponent>;
 
+    @HostBinding('class') get classes(): string {
+        console.log('this.class', this.class);
+        //
+        // Set button class
+        this.setButtonClass();
+        // return null cause the host element must be empty of classes
+        return '';
+    }
+
     public onChange = (value: any) => {};
     public onTouched = () => {};
 
@@ -89,8 +93,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     public isOpen: boolean = false;
     public overlayWidth!: string;
 
+    public _buttonClass: string = '';
+    public _panelClass: string = '';
+    public _panelMandatoryClass: string = 'absolute z-10 mt-1 w-full overflow-auto focus:outline-none sm:text-sm tw-option-panel-scroll';
+
     private _keyManager!: ActiveDescendantKeyManager<OptionComponent>;
-    private _config: TwSelectConfig['select'] = this.selectConfig.config.select;
 
     /** Combined stream of all of the child options' change events. */
     readonly optionSelectionChanges: Observable<OptionSelectionChange> = defer(() => {
@@ -109,13 +116,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         );
     }) as Observable<OptionSelectionChange>;
 
-    constructor(
-        public cdr: ChangeDetectorRef,
-        public elementRef: ElementRef,
-        private readonly zone: NgZone,
-        private readonly liveAnnouncer: LiveAnnouncer,
-        private readonly selectConfig: TwSelectConfigService
-    ) {}
+    constructor(public cdr: ChangeDetectorRef, private readonly zone: NgZone, private readonly liveAnnouncer: LiveAnnouncer) {
+        //
+        // Set panel class
+        this.setPanelClass();
+    }
 
     ngOnInit(): void {}
 
@@ -134,6 +139,15 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
                 this.selectOption(this.innerValue, null, false, true);
             });
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        console.log('changes', changes);
+        //
+        // Change for panelClass
+        if (changes['panelClass']?.previousValue !== changes['panelClass']?.currentValue) {
+            this.setPanelClass();
+        }
     }
 
     writeValue(value: any) {
@@ -306,7 +320,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
             .withTypeAhead()
             .withVerticalOrientation()
             .withHomeAndEnd()
-            .withWrap()
             .withAllowedModifierKeys(['shiftKey']);
 
         this._keyManager.change.pipe().subscribe(() => {
@@ -334,15 +347,10 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         }
     }
 
-    getClasses() {
+    setButtonClass() {
         //
         // Hold classes
         let classes: string[] = [];
-
-        //
-        // Set global config and classes
-        const config: any = this._config;
-        const globalClasses: string[] = config.host.class ? config.host.class.split(' ').filter((item: string) => item) : [];
 
         //
         // Get @input classes if available
@@ -350,46 +358,17 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         const inputIgnoreClasses: string[] = this?.ignore ? this.ignore.split(' ').filter((item: string) => item) : [];
 
         //
-        // Add global classes
-        classes = [...globalClasses];
-
-        //
         // Filter global classes using global and @input ignore
         classes = difference(classes, inputClasses, inputIgnoreClasses);
 
-        return classes?.length ? classes.join(' ') : '';
+        //
+        // Set button class
+        this._buttonClass = classes?.length ? classes.join(' ') : '';
+
+        return this._buttonClass;
     }
 
-    getPanelClass() {
-        //
-        // Hold classes
-        let classes: string[] = [];
-
-        //
-        // Set global config and classes
-        const config: any = this._config;
-        const globalClasses: string[] = config.panel.class ? config.panel.class.split(' ').filter((item: string) => item) : [];
-        const globalMandatoryClasses: string[] = config.panel.mandatoryClass
-            ? config.panel.mandatoryClass.split(' ').filter((item: string) => item)
-            : [];
-
-        //
-        // Get @input classes if available
-        const inputClasses: string[] = this.panelClass?.split(' ').filter((item: string) => item) || [];
-        const inputIgnoreClasses: string[] = this?.panelIgnoreClass ? this.panelIgnoreClass.split(' ').filter((item: string) => item) : [];
-
-        //
-        // Add global classes
-        classes = [...globalClasses];
-
-        //
-        // Filter global classes using global and @input ignore
-        classes = difference(classes, inputClasses, inputIgnoreClasses);
-
-        //
-        // Add mandatory classes
-        classes = [...classes, ...globalMandatoryClasses];
-
-        return classes?.length ? classes.join(' ') : '';
+    setPanelClass() {
+        return (this._panelClass = `${this.panelClass} ${this._panelMandatoryClass}`);
     }
 }
