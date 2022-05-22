@@ -19,7 +19,8 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
-            backgroundColor: ['disabled'],
+            backgroundColor: ['disabled', 'hover'],
+            textColor: ['disabled'],
         },
     },
     plugins: [],

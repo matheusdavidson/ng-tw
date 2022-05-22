@@ -13,11 +13,19 @@ import 'prismjs/components/prism-bash.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
-import { TwNotificationModule } from 'ng-tw';
+import { TwButtonConfigModule, TwButtonModule, TwDropdownModule, TwNotificationModule } from 'ng-tw';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), BrowserAnimationsModule, AppRoutingModule, MarkdownModule.forRoot(), TwNotificationModule.forRoot()],
+    imports: [
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        MarkdownModule.forRoot(),
+        TwNotificationModule.forRoot(),
+        TwButtonConfigModule.forRoot(),
+        TwDropdownModule.forRoot(),
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })

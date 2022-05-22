@@ -36,4 +36,8 @@ export class IntroductionRouteComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {}
+
+    teste() {
+        console.log('teste');
+    }
 }

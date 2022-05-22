@@ -118,4 +118,20 @@ export class AppComponent {
     compareWith(option: any, value: any): boolean {
         return option?.value && value?.value ? option.value === value.value : option === value;
     }
+
+    getGroupedNavigation() {
+        const navigation: any[] = [];
+
+        for (const nav of this.navigation) {
+            navigation.push({ label: nav.label, link: null });
+
+            //
+            // Loop inner links
+            for (const link of nav.links) {
+                navigation.push({ label: link.label, link: link.link });
+            }
+        }
+
+        return navigation;
+    }
 }

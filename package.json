@@ -3,9 +3,9 @@
   "version": "0.0.2",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start": "ng serve --proejct ng-tw",
+    "build": "ng build --proejct ng-tw",
+    "watch": "ng build --project ng-tw --watch --configuration development",
     "test": "ng test",
     "release:major": "cd ./scripts && npm run release:major",
     "release:minor": "cd ./scripts && npm run release:minor",

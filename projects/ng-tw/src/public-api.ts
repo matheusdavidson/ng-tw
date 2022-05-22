@@ -15,7 +15,14 @@ export * from './modules/notification/notification-config';
 export * from './modules/notification/notification-ref';
 export * from './modules/notification/notification.component';
 export * from './modules/notification/notification.module';
+export * from './modules/notification/notification-config.module';
 export * from './modules/notification/notification.service';
 
 export * from './modules/progress-bar/progress-bar.component';
 export * from './modules/progress-bar/progress-bar.module';
+
+export * from './modules/dropdown/dropdown-panel.interface';
+export * from './modules/dropdown/dropdown-trigger-for.directive';
+export * from './modules/dropdown/dropdown-item.component';
+export * from './modules/dropdown/dropdown.component';
+export * from './modules/dropdown/dropdown.module';

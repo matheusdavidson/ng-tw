@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IntroductionRouteComponent } from './introduction-route.component';
 import { Routes, RouterModule } from '@angular/router';
 import { IntroductionSideRouteComponent } from '../introduction-side-route/introduction-side-route.component';
+import { TwButtonModule, TwDropdownModule } from 'ng-tw';
 
 const routes: Routes = [
     {
@@ -18,6 +19,6 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [IntroductionRouteComponent, IntroductionSideRouteComponent],
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [CommonModule, RouterModule.forChild(routes), TwDropdownModule],
 })
 export class IntroductionRouteModule {}

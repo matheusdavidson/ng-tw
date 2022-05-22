@@ -60,6 +60,7 @@
                             </svg>
                         </a>
                         <button
+                            [twDropdownTriggerFor]="dropdown"
                             aria-label="Menu"
                             class="xl:hidden p-2 rounded-md text-gray-700 focus:outline-none -mr-2"
                         >
@@ -75,6 +76,22 @@
                                 <path d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
                         </button>
+
+                        <tw-dropdown
+                            class="w-40"
+                            xPosition="end"
+                            #dropdown
+                        >
+                            <a
+                                tw-dropdown-item
+                                [ngClass]="{'text-xs font-bold mt-2': item.link === null}"
+                                [routerLink]="[item.link]"
+                                [disabled]="item.link === null ? true : false"
+                                *ngFor="let item of getGroupedNavigation()"
+                            >
+                                {{item.label}}
+                            </a>
+                        </tw-dropdown>
                     </div>
                 </div>
             </div>

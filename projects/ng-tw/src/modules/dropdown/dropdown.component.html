@@ -1,0 +1,16 @@
+<ng-template>
+    <div
+        tabindex="-1"
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="menu-button"
+        [attr.id]="-1"
+        [class]="getClasses()"
+        (keydown)="handleKeydown($event)"
+        (click)="closed.emit()"
+    >
+        <div class="py-1">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</ng-template>
