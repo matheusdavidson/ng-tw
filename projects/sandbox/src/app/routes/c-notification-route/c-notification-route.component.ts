@@ -9,8 +9,8 @@ import { TwNotification, TwNotificationData, TwNotificationType } from 'ng-tw';
 export class CNotificationRouteComponent implements OnInit {
     public bottomNavigation: any = {
         first: {
-            label: 'Button',
-            link: '/components/button',
+            label: 'Dropdown',
+            link: '/components/dropdown',
         },
         last: {
             label: 'Progress Bar',

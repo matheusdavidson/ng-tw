@@ -12,8 +12,8 @@ export class CButtonRouteComponent implements OnInit {
             link: '/installation',
         },
         last: {
-            label: 'Notification',
-            link: '/components/notification',
+            label: 'Dropdown',
+            link: '/components/dropdown',
         },
     };
 
