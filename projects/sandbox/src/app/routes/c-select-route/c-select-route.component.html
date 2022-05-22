@@ -22,6 +22,8 @@
                 >
                     <tw-option>Select an option</tw-option>
                     <tw-option
+                        activeClass="bg-gray-100"
+                        selectedClass="font-bold"
                         *ngFor="let item of options"
                         [value]="item.value"
                     >
@@ -46,8 +48,10 @@
                 >
                     <tw-option>Select an option</tw-option>
                     <tw-option
+                        activeClass="bg-gray-100"
+                        selectedClass="font-bold"
                         *ngFor="let item of options"
-                        [value]="item"
+                        [value]="item.value"
                     >
                         {{item.label}}
                     </tw-option>
@@ -69,6 +73,8 @@
                 >
                     <tw-option>Select an option</tw-option>
                     <tw-option
+                        activeClass="bg-gray-100"
+                        selectedClass="font-bold"
                         *ngFor="let item of options"
                         [value]="item"
                     >
