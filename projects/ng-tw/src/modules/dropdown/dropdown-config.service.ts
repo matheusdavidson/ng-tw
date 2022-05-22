@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { isEmpty, merge } from 'lodash';
 import { TwDropdownConfig } from './dropdown-config.interface';
 
@@ -8,7 +8,9 @@ import { TwDropdownConfig } from './dropdown-config.interface';
  */
 export const TwDropdownSetup = new InjectionToken<TwDropdownConfig>('TwDropdownConfig');
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class TwDropdownConfigService {
     public config: TwDropdownConfig = {
         panel: { class: 'rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none', ignore: '' },
@@ -18,7 +20,7 @@ export class TwDropdownConfigService {
         },
     };
 
-    constructor(@Inject(TwDropdownSetup) public options: TwDropdownConfig) {
+    constructor(@Optional() @Inject(TwDropdownSetup) public options: TwDropdownConfig) {
         //
         // Validate
         if (isEmpty(options)) return;
