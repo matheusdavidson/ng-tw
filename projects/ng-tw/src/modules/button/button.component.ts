@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { difference } from 'lodash';
+import { TwButtonConfig } from './button-config.interface';
+import { TwButtonConfigService } from './button-config.service';
 
 type ColorType = 'basic' | 'primary' | 'secondary' | 'danger';
 
@@ -68,91 +70,9 @@ export class ButtonComponent implements OnInit, OnChanges {
     @Input() public size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'md';
     @Input() public ignore: string = '';
 
-    private _config: any = {
-        global: 'focus:outline-none border border-transparent rounded',
-        font: {
-            weight: 'font-medium',
-        },
-        disabled: {
-            basic: {
-                class: 'disabled:bg-transparent disabled:text-gray-200',
-                ignore: '',
-            },
-            raised: {
-                class: 'disabled:bg-gray-200 disabled:text-gray-300',
-                ignore: '',
-            },
-            stroked: {
-                class: 'disabled:border disabled:border-gray-200 disabled:text-gray-200',
-                ignore: 'hover:bg-gray-100 hover:bg-primary-50 hover:bg-secondary-100 hover:bg-danger-100',
-            },
-            flat: {
-                class: 'disabled:bg-gray-200 disabled:text-gray-300',
-                ignore: '',
-            },
-        },
-        layout: {
-            basic: {
-                basic: 'hover:bg-gray-100',
-                primary: 'hover:bg-primary-50 text-primary',
-                secondary: 'hover:bg-secondary-50 text-secondary',
-                danger: 'hover:bg-danger-50 text-danger',
-                tailwind: 'hover:bg-{color}-50 text-{color}-600',
-                ignore: '',
-            },
-            raised: {
-                basic: 'bg-white',
-                primary: 'text-white bg-primary',
-                secondary: 'text-white bg-secondary',
-                danger: 'text-white bg-danger',
-                tailwind: 'text-white bg-{color}-600',
-                global: 'shadow-sm hover:active:shadow-lg',
-                ignore: '',
-            },
-            stroked: {
-                basic: 'hover:bg-gray-100',
-                primary: 'text-primary hover:bg-primary-50',
-                secondary: 'text-secondary hover:bg-secondary-100',
-                danger: 'text-danger hover:bg-danger-100',
-                tailwind: 'text-{color}-600 hover:bg-{color}-200',
-                global: 'bg-transparent border border-gray-200',
-                ignore: '',
-            },
-            flat: {
-                basic: 'bg-white',
-                primary: 'text-white bg-primary focus:ring-primary-500',
-                secondary: 'text-white bg-secondary focus:ring-secondary-500',
-                danger: 'text-white bg-danger focus:ring-danger-500',
-                tailwind: 'text-white bg-{color}-600 focus:ring-{color}-600',
-                global: 'focus:ring-2 focus:ring-offset-2',
-                ignore: '',
-            },
-        },
-        sizes: {
-            xs: {
-                class: 'px-2.5 py-1.5 text-xs',
-                ignore: '',
-            },
-            sm: {
-                class: 'px-3 py-1.5 text-sm',
-                ignore: '',
-            },
-            md: {
-                class: 'px-4 py-2 text-sm',
-                ignore: '',
-            },
-            lg: {
-                class: 'px-4 py-2 text-base',
-                ignore: '',
-            },
-            xl: {
-                class: 'px-6 py-3 text-base',
-                ignore: '',
-            },
-        },
-    };
-
-    constructor(private readonly elementRef: ElementRef) {
+    private _config: TwButtonConfig = this.buttonConfig.config;
+    
+    constructor(private readonly elementRef: ElementRef, private readonly buttonConfig: TwButtonConfigService) {
         //
         // Get config according to inputs
         const classes: string[] = this.setup();
@@ -230,10 +150,7 @@ export class ButtonComponent implements OnInit, OnChanges {
         //
         // Get layout classes according and split values
         const layoutClasses: string[] = this._config.layout[this.layout][this.color].split(' ');
-        const layoutGlobalClasses: string[] = this._config.layout[this.layout]?.global?.split(' ');
         const layoutIgnoreClasses: string[] = this._config.layout[this.layout].ignore.split(' ');
-        // add global classes
-        if (layoutGlobalClasses) layoutClasses.push(...layoutGlobalClasses);
         // filter ignored classes and remove empty strings
         const classes = difference(layoutClasses, layoutIgnoreClasses);
 
