@@ -101,7 +101,6 @@ export class CDropdownRouteComponent implements OnInit {
                         #dropdown2
                     >
                         <button
-                            class="disabled:text-gray-200"
                             tw-dropdown-item
                             *ngFor="let item of options"
                             [disabled]="item.disabled"
