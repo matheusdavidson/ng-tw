@@ -20,6 +20,7 @@ import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
 import { difference } from 'lodash';
 import { TwSelectConfig } from './select-config.interface';
 import { TwSelectConfigService } from './select-config.service';
+import { Overlay } from '@angular/cdk/overlay';
 
 /**
  * IDs need to be unique across components, so this counter exists outside of
@@ -91,6 +92,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
 
     private _keyManager!: ActiveDescendantKeyManager<OptionComponent>;
     private _config: TwSelectConfig['select'] = this.selectConfig.config.select;
+    public _scrollStrategy: any = this.overlay.scrollStrategies.block();
 
     /** Combined stream of all of the child options' change events. */
     readonly optionSelectionChanges: Observable<OptionSelectionChange> = defer(() => {
@@ -112,6 +114,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     constructor(
         public cdr: ChangeDetectorRef,
         public elementRef: ElementRef,
+        public overlay: Overlay,
         private readonly zone: NgZone,
         private readonly liveAnnouncer: LiveAnnouncer,
         private readonly selectConfig: TwSelectConfigService
