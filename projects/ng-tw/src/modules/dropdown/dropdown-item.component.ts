@@ -30,6 +30,7 @@ export class DropdownItemComponent implements FocusableOption {
     @Input() public disabled: boolean = false;
     @Input() public id: string = `tw-dropdown-item-${_uniqueIdCounter++}`;
     @Input() public class: string = '';
+    @Input() public ignore: string = '';
 
     public active: boolean = false;
     public selected: boolean = false;
@@ -81,7 +82,7 @@ export class DropdownItemComponent implements FocusableOption {
         //
         // Set ignore classes, global and @input
         const globalIgnoreClasses: string[] = config?.ignore ? config.ignore.split(' ').filter((item: string) => item) : [];
-        const inputIgnoreClasses: string[] = config?.ignore ? config.ignore.split(' ').filter((item: string) => item) : [];
+        const inputIgnoreClasses: string[] = this.ignore ? this.ignore.split(' ').filter((item: string) => item) : [];
 
         //
         // Add global and disabled classes
