@@ -1,9 +1,9 @@
 <article class="prose max-w-none lg:px-8">
-    <h1 id="select">
-        Progress Bar
+    <h1 id="dropdown">
+        Dropdown
     </h1>
 
-    <p>To use the select component you need to load it in the module you'll use it:</p>
+    <p>To use the dropdown component you need to load on your module:</p>
 
     <markdown [data]="markdownLoad"></markdown>
 
@@ -11,80 +11,85 @@
     <h3 id="basic-usage">Basic usage</h3>
 
     <div class="demo-container">
-
         <div class="demo-row">
             <div class="demo-row-title">Basic</div>
 
             <div class="demo-row-content md:flex-1">
-                <tw-select
-                    class="w-64 max-w-full"
-                    [formControl]="selectControl"
+                <button
+                    tw-button
+                    layout="stroked"
+                    [twDropdownTriggerFor]="dropdown"
                 >
-                    <tw-option>Select an option</tw-option>
-                    <tw-option
-                        activeClass="bg-gray-100"
-                        selectedClass="font-bold"
+                    Options
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 inline-block -mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </button>
+
+                <tw-dropdown
+                    class="w-40"
+                    xPosition="end"
+                    #dropdown
+                >
+                    <a
+                        tw-dropdown-item
                         *ngFor="let item of options"
-                        [value]="item.value"
                     >
                         {{item.label}}
-                    </tw-option>
-                </tw-select>
-            </div>
-
-            <div class="md:flex-1">
-                Selected Value: {{ selectControl.value ? selectControl.value : '---' }}
+                    </a>
+                </tw-dropdown>
             </div>
         </div>
 
         <div class="demo-row">
-            <div class="demo-row-title">Compare with</div>
+            <div class="demo-row-title">Disabled item</div>
 
             <div class="demo-row-content md:flex-1">
-                <tw-select
-                    class="w-64 max-w-full"
-                    [formControl]="selectCompareWithControl"
-                    [compareWith]="compareWith"
+                <button
+                    tw-button
+                    layout="stroked"
+                    [twDropdownTriggerFor]="dropdown2"
                 >
-                    <tw-option>Select an option</tw-option>
-                    <tw-option
-                        activeClass="bg-gray-100"
-                        selectedClass="font-bold"
+                    Options
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 inline-block -mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </button>
+
+                <tw-dropdown
+                    class="w-40"
+                    xPosition="end"
+                    #dropdown2
+                >
+                    <button
+                        class="disabled:text-gray-200"
+                        tw-dropdown-item
                         *ngFor="let item of options"
-                        [value]="item.value"
+                        [disabled]="item.disabled"
                     >
                         {{item.label}}
-                    </tw-option>
-                </tw-select>
-            </div>
-
-            <div class="md:flex-1">
-                Selected Value: {{ selectCompareWithControl.value ? (selectCompareWithControl.value | json) : '---' }}
-            </div>
-        </div>
-
-        <div class="demo-row">
-            <div class="demo-row-title">Compare with <br> Initial value</div>
-            <div class="demo-row-content md:flex-1">
-                <tw-select
-                    class="w-64 max-w-full"
-                    [formControl]="selectCompareWithInitialValueControl"
-                    [compareWith]="compareWith"
-                >
-                    <tw-option>Select an option</tw-option>
-                    <tw-option
-                        activeClass="bg-gray-100"
-                        selectedClass="font-bold"
-                        *ngFor="let item of options"
-                        [value]="item"
-                    >
-                        {{item.label}}
-                    </tw-option>
-                </tw-select>
-            </div>
-
-            <div class="md:flex-1">
-                Selected Value: {{ selectCompareWithInitialValueControl.value ? (selectCompareWithInitialValueControl.value | json) : '---' }}
+                    </button>
+                </tw-dropdown>
             </div>
         </div>
     </div>

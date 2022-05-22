@@ -25,6 +25,88 @@ export class CSelectRouteComponent implements OnInit {
         \`\`\`
     `;
 
+    public markdownUsage = `
+        \`\`\`html
+        <div class="demo-container">
+            <div class="demo-row">
+                <div class="demo-row-title">Basic</div>
+
+                <div class="demo-row-content md:flex-1">
+                    <tw-select
+                        class="w-64 max-w-full"
+                        [formControl]="selectControl"
+                    >
+                        <tw-option>Select an option</tw-option>
+                        <tw-option
+                            activeClass="bg-gray-100"
+                            selectedClass="font-bold"
+                            *ngFor="let item of options"
+                            [value]="item.value"
+                        >
+                            {{item.label}}
+                        </tw-option>
+                    </tw-select>
+                </div>
+
+                <div class="md:flex-1">
+                    Selected Value: {{ selectControl.value ? selectControl.value : '---' }}
+                </div>
+            </div>
+
+            <div class="demo-row">
+                <div class="demo-row-title">Compare with</div>
+
+                <div class="demo-row-content md:flex-1">
+                    <tw-select
+                        class="w-64 max-w-full"
+                        [formControl]="selectCompareWithControl"
+                        [compareWith]="compareWith"
+                    >
+                        <tw-option>Select an option</tw-option>
+                        <tw-option
+                            activeClass="bg-gray-100"
+                            selectedClass="font-bold"
+                            *ngFor="let item of options"
+                            [value]="item.value"
+                        >
+                            {{item.label}}
+                        </tw-option>
+                    </tw-select>
+                </div>
+
+                <div class="md:flex-1">
+                    Selected Value: {{ selectCompareWithControl.value ? (selectCompareWithControl.value | json) : '---' }}
+                </div>
+            </div>
+
+            <div class="demo-row">
+                <div class="demo-row-title">Compare with <br> Initial value</div>
+                <div class="demo-row-content md:flex-1">
+                    <tw-select
+                        class="w-64 max-w-full"
+                        [formControl]="selectCompareWithInitialValueControl"
+                        [compareWith]="compareWith"
+                    >
+                        <tw-option>Select an option</tw-option>
+                        <tw-option
+                            activeClass="bg-gray-100"
+                            selectedClass="font-bold"
+                            *ngFor="let item of options"
+                            [value]="item"
+                        >
+                            {{item.label}}
+                        </tw-option>
+                    </tw-select>
+                </div>
+
+                <div class="md:flex-1">
+                    Selected Value: {{ selectCompareWithInitialValueControl.value ? (selectCompareWithInitialValueControl.value | json) : '---' }}
+                </div>
+            </div>
+        </div>
+        \`\`\`
+    `;
+
     public options: any[] = [
         { label: 'One', value: 'value-1' },
         { label: 'Two', value: 'value-2' },

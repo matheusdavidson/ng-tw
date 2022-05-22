@@ -82,15 +82,27 @@
                             xPosition="end"
                             #dropdown
                         >
-                            <a
-                                tw-dropdown-item
-                                [ngClass]="{'text-xs font-bold mt-2': item.link === null}"
-                                [routerLink]="[item.link]"
-                                [disabled]="item.link === null ? true : false"
+                            <ng-container
                                 *ngFor="let item of getGroupedNavigation()"
+                                [ngSwitch]="item.link"
                             >
-                                {{item.label}}
-                            </a>
+                                <button
+                                    *ngSwitchCase="null"
+                                    tw-dropdown-item
+                                    class="text-xs font-bold mt-2 text-gray-600 hover:disabled:text-gray-600"
+                                    ignore="disabled:text-gray-400 hover:disabled:text-gray-400"
+                                    [disabled]="true"
+                                >
+                                    {{item.label}}
+                                </button>
+                                <a
+                                    *ngSwitchDefault
+                                    tw-dropdown-item
+                                    [routerLink]="[item.link]"
+                                >
+                                    {{item.label}}
+                                </a>
+                            </ng-container>
                         </tw-dropdown>
                     </div>
                 </div>

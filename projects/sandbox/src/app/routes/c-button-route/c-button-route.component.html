@@ -278,6 +278,13 @@
         </div>
     </div>
 
+    <h3>Usage</h3>
+
+    <markdown
+        [data]="markdownLayoutAndColor"
+        class="max-h-96 block rounded overflow-y-auto"
+    ></markdown>
+
     <h2 id="customizing">Customizing</h2>
     <p>In an utility first environment it's tricky to build customizable components, we must have a default state first but also being able to customize things around, with that in mind <code class="tw-code">ng-tw</code> uses as a role an <code class="tw-code">@Input</code> called <code class="tw-code">ignore</code> and <code class="tw-code">class</code>, this will let you take advantage of the current classes applied but still being able to customize the component around the tailwind classes you want.</p>
 
