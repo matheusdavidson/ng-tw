@@ -61,7 +61,7 @@ export class TwButtonConfigService {
                 danger: 'text-danger hover:bg-danger-100',
                 tailwind: 'text-{color}-600 hover:bg-{color}-200',
                 global: 'bg-transparent border border-gray-200',
-                ignore: '',
+                ignore: 'border-transparent',
             },
             flat: {
                 basic: 'bg-white',
