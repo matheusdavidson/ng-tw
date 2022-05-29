@@ -13,7 +13,7 @@ export const TwButtonSetup = new InjectionToken<TwButtonConfig>('TwButtonConfig'
 })
 export class TwButtonConfigService {
     public config: TwButtonConfig = {
-        global: 'focus:outline-none border border-transparent rounded',
+        global: 'focus:outline-none rounded ease-linear transition-all duration-150',
         font: {
             weight: 'font-medium',
         },
@@ -42,7 +42,7 @@ export class TwButtonConfigService {
                 secondary: 'hover:bg-secondary-50 text-secondary',
                 danger: 'hover:bg-danger-50 text-danger',
                 tailwind: 'hover:bg-{color}-50 text-{color}-600',
-                global: '',
+                global: 'border-transparent',
                 ignore: '',
             },
             raised: {
@@ -51,7 +51,7 @@ export class TwButtonConfigService {
                 secondary: 'text-white bg-secondary',
                 danger: 'text-white bg-danger',
                 tailwind: 'text-white bg-{color}-600',
-                global: 'shadow-sm hover:active:shadow-lg',
+                global: 'border-transparent shadow-sm hover:active:shadow-lg',
                 ignore: '',
             },
             stroked: {
@@ -61,7 +61,7 @@ export class TwButtonConfigService {
                 danger: 'text-danger hover:bg-danger-100',
                 tailwind: 'text-{color}-600 hover:bg-{color}-200',
                 global: 'bg-transparent border border-gray-200',
-                ignore: 'border-transparent',
+                ignore: '',
             },
             flat: {
                 basic: 'bg-white',
@@ -69,7 +69,7 @@ export class TwButtonConfigService {
                 secondary: 'text-white bg-secondary focus:ring-secondary-500',
                 danger: 'text-white bg-danger focus:ring-danger-500',
                 tailwind: 'text-white bg-{color}-600 focus:ring-{color}-600',
-                global: 'focus:ring-2 focus:ring-offset-2',
+                global: 'border-transparent focus:ring-2 focus:ring-offset-2',
                 ignore: '',
             },
         },
