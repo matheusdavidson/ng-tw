@@ -38,7 +38,7 @@
     [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
     [cdkConnectedOverlayOrigin]="elementRef.nativeElement"
     [cdkConnectedOverlayOpen]="isOpen"
-    [cdkConnectedOverlayWidth]="overlayWidth || elementRef.nativeElement.offsetWidth"
+    [cdkConnectedOverlayMinWidth]="elementRef.nativeElement.offsetWidth"
     (backdropClick)="backdropClick()"
     (keydown)="handleKeydown($event)"
     (detach)="closePanel()"
