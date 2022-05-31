@@ -20,7 +20,7 @@ import { ActiveDescendantKeyManager, LiveAnnouncer } from '@angular/cdk/a11y';
 import { difference } from 'lodash';
 import { TwSelectConfig } from './select-config.interface';
 import { TwSelectConfigService } from './select-config.service';
-import { Overlay } from '@angular/cdk/overlay';
+import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
 
 /**
  * IDs need to be unique across components, so this counter exists outside of
@@ -93,6 +93,23 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     private _keyManager!: ActiveDescendantKeyManager<OptionComponent>;
     private _config: TwSelectConfig['select'] = this.selectConfig.config.select;
     public _scrollStrategy: any = this.overlay.scrollStrategies.block();
+
+    public positions: ConnectedPosition[] = [
+        {
+            originX: 'start',
+            originY: 'bottom',
+            overlayX: 'start',
+            overlayY: 'top',
+            offsetY: 8,
+        },
+        {
+            originX: 'start',
+            originY: 'top',
+            overlayX: 'start',
+            overlayY: 'bottom',
+            offsetY: -8,
+        },
+    ];
 
     /** Combined stream of all of the child options' change events. */
     readonly optionSelectionChanges: Observable<OptionSelectionChange> = defer(() => {
