@@ -1,3 +1,13 @@
+## [0.0.8](https://github.com/matheusdavidson/ng-tw/compare/v0.0.7...v0.0.8) (2022-05-31)
+
+
+### Features
+
+* **select/input:** space to add input ([0c0567e](https://github.com/matheusdavidson/ng-tw/commit/0c0567e5507252fbc4390bf35828fc461d6b17b6))
+* **select/position:** default position and use available space when needed ([880cea3](https://github.com/matheusdavidson/ng-tw/commit/880cea39698e5fb775416442364d0f7c30746f4f))
+
+
+
 ## [0.0.7](https://github.com/matheusdavidson/ng-tw/compare/v0.0.6...v0.0.7) (2022-05-29)
 
 
