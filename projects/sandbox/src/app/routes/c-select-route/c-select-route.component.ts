@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { cloneDeep } from 'lodash';
 
 @Component({
     selector: 'app-c-select-route',
@@ -103,6 +104,37 @@ export class CSelectRouteComponent implements OnInit {
                     Selected Value: {{ selectCompareWithInitialValueControl.value ? (selectCompareWithInitialValueControl.value | json) : '---' }}
                 </div>
             </div>
+
+            <div class="demo-row">
+                <div class="demo-row-title">With Input</div>
+
+                <div class="demo-row-content md:flex-1">
+                    <tw-select
+                        class="w-64 max-w-full"
+                        [formControl]="selectControlWithInput"
+                    >
+                        <input
+                            type="text"
+                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                            placeholder="Search.."
+                        />
+
+                        <tw-option>Select an option</tw-option>
+                        <tw-option
+                            activeClass="bg-gray-100"
+                            selectedClass="font-bold"
+                            *ngFor="let item of options"
+                            [value]="item.value"
+                        >
+                            {{item.label}}
+                        </tw-option>
+                    </tw-select>
+                </div>
+
+                <div class="md:flex-1">
+                    Selected Value: {{ selectControl.value ? selectControl.value : '---' }}
+                </div>
+            </div>
         </div>
         \`\`\`
     `;
@@ -130,13 +162,18 @@ export class CSelectRouteComponent implements OnInit {
         { label: 'Twenty', value: 'value-20' },
     ];
 
+    public optionsForWithInput: any[] = [];
+
     public selectControl: FormControl = new FormControl({ value: 'value-1', disabled: false });
     public selectCompareWithControl: FormControl = new FormControl({ value: null, disabled: false });
     public selectCompareWithInitialValueControl: FormControl = new FormControl({ value: null, disabled: false });
+    public selectControlWithInput: FormControl = new FormControl({ value: null, disabled: false });
 
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.optionsForWithInput = cloneDeep(this.options);
+    }
 
     compareWith(option: any, value: any): boolean {
         return option?.value && value?.value ? option.value === value.value : option === value;

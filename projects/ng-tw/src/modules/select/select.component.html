@@ -38,7 +38,8 @@
     [cdkConnectedOverlayScrollStrategy]="_scrollStrategy"
     [cdkConnectedOverlayOrigin]="elementRef.nativeElement"
     [cdkConnectedOverlayOpen]="isOpen"
-    [cdkConnectedOverlayWidth]="overlayWidth || elementRef.nativeElement.offsetWidth"
+    [cdkConnectedOverlayPositions]="positions"
+    [cdkConnectedOverlayMinWidth]="elementRef.nativeElement.offsetWidth"
     (backdropClick)="backdropClick()"
     (keydown)="handleKeydown($event)"
     (detach)="closePanel()"
@@ -49,6 +50,19 @@
         tabindex="-1"
         role="listbox"
     >
+        <!-- Input container -->
+        <div
+            #inputContainer
+            class="w-full flex flex-col p-3"
+            [ngClass]="{'flex': inputContainer.children.length !== 0, 'hidden': inputContainer.children.length === 0}"
+        >
+            <ng-content select="input"></ng-content>
+        </div>
+
+        <!-- Options -->
         <ng-content select="tw-option"></ng-content>
+
+        <!-- Will be used for extra content like empty list message -->
+        <ng-content></ng-content>
     </div>
 </ng-template>

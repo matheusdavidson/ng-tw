@@ -87,6 +87,37 @@
                 Selected Value: {{ selectCompareWithInitialValueControl.value ? (selectCompareWithInitialValueControl.value | json) : '---' }}
             </div>
         </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">With Input</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-select
+                    class="w-64 max-w-full"
+                    [formControl]="selectControlWithInput"
+                >
+                    <input
+                        type="text"
+                        class="focus:ring-0 focus:ring-offset-0 focus:outline-0 min-w-full sm:text-sm border-b border-gray-200 -m-3 -mt-4 p-3 mb-0"
+                        placeholder="Search.."
+                    />
+
+                    <tw-option>Select an option</tw-option>
+                    <tw-option
+                        activeClass="bg-gray-100"
+                        selectedClass="font-bold"
+                        *ngFor="let item of options"
+                        [value]="item.value"
+                    >
+                        {{item.label}}
+                    </tw-option>
+                </tw-select>
+            </div>
+
+            <div class="md:flex-1">
+                Selected Value: {{ selectControlWithInput.value ? selectControlWithInput.value : '---' }}
+            </div>
+        </div>
     </div>
 
     <h3>Usage</h3>
