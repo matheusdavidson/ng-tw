@@ -107,7 +107,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         {
             originX: 'end',
             originY: 'bottom',
-            overlayX: 'start',
+            overlayX: 'end',
             overlayY: 'top',
             offsetY: 8,
         },
@@ -121,7 +121,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         {
             originX: 'end',
             originY: 'top',
-            overlayX: 'start',
+            overlayX: 'end',
             overlayY: 'bottom',
             offsetY: -8,
         },
