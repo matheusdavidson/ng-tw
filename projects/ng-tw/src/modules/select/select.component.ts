@@ -77,6 +77,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         this.selectOption(newValue, null, false);
     }
 
+    @ViewChild('inputContainer', { static: true }) public inputContainer!: ElementRef<HTMLDivElement>;
     @ViewChild('trigger', { static: true }) public trigger!: ElementRef;
     @ContentChildren(OptionComponent, { descendants: true }) public options!: QueryList<OptionComponent>;
 
