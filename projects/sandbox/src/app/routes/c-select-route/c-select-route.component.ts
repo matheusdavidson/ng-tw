@@ -55,6 +55,45 @@ export class CSelectRouteComponent implements OnInit {
             </div>
 
             <div class="demo-row">
+                <div class="demo-row-title">Custom arrow</div>
+
+                <div class="demo-row-content md:flex-1">
+                    <tw-select
+                        class="w-64 max-w-full"
+                        [formControl]="selectCustomArrowControl"
+                    >
+                        <svg
+                            arrow-icon
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 text-red-500"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+
+                        <tw-option>Select an option</tw-option>
+                        <tw-option
+                            activeClass="bg-gray-100"
+                            selectedClass="font-bold"
+                            *ngFor="let item of options"
+                            [value]="item.value"
+                        >
+                            {{item.label}}
+                        </tw-option>
+                    </tw-select>
+                </div>
+
+                <div class="md:flex-1">
+                    Selected Value: {{ selectCustomArrowControl.value ? selectCustomArrowControl.value : '---' }}
+                </div>
+            </div>
+
+            <div class="demo-row">
                 <div class="demo-row-title">Compare with</div>
 
                 <div class="demo-row-content md:flex-1">
@@ -165,9 +204,10 @@ export class CSelectRouteComponent implements OnInit {
     public optionsForWithInput: any[] = [];
 
     public selectControl: FormControl = new FormControl({ value: 'value-1', disabled: false });
+    public selectCustomArrowControl: FormControl = new FormControl({ value: null, disabled: false });
     public selectCompareWithControl: FormControl = new FormControl({ value: null, disabled: false });
     public selectCompareWithInitialValueControl: FormControl = new FormControl({ value: null, disabled: false });
-    public selectControlWithInput: FormControl = new FormControl({ value: null, disabled: false });
+    public selectWithInputControl: FormControl = new FormControl({ value: null, disabled: false });
 
     constructor() {}
 
