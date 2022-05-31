@@ -1,3 +1,12 @@
+## [0.0.9](https://github.com/matheusdavidson/ng-tw/compare/v0.0.8...v0.0.9) (2022-05-31)
+
+
+### Features
+
+* **select/arrow:** customize arrow icon ([b95c982](https://github.com/matheusdavidson/ng-tw/commit/b95c982986f84631404e35ce579bedadd00aa039))
+
+
+
 ## [0.0.8](https://github.com/matheusdavidson/ng-tw/compare/v0.0.7...v0.0.8) (2022-05-31)
 
 
