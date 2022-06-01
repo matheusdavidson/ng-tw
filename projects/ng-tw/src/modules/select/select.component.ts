@@ -174,6 +174,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
 
     writeValue(value: any) {
         this.selectOption(value, null, false);
+        this.cdr.markForCheck();
     }
 
     registerOnChange(onChange: any) {
