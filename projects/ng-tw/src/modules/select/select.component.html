@@ -1,7 +1,7 @@
 <span
     class="block truncate"
-    [ngClass]="{'block': !innerValue || !htmlValue}"
-    [hidden]="innerValue && htmlValue"
+    [ngClass]="{'block': !innerValue}"
+    [hidden]="innerValue"
 >
     {{ placeholder}}
 </span>
@@ -9,8 +9,8 @@
 <span
     class="block truncate"
     [innerHtml]="htmlValue"
-    [ngClass]="{'block': innerValue && htmlValue}"
-    [hidden]="!innerValue || !htmlValue"
+    [ngClass]="{'block': innerValue}"
+    [hidden]="!innerValue"
 ></span>
 
 <style>
