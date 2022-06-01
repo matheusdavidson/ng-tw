@@ -86,7 +86,14 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     public onTouched = () => {};
 
     public innerValue: any = null;
-    public htmlValue: any = null;
+    public get htmlValue(): string | null {
+        //
+        // Validate inner value
+        if (!this.innerValue && !this._keyManager.activeItem) return null;
+        else return this._keyManager.activeItem?.getInnerHTML() || null;
+    }
+
+    private _htmlValue: string | null = null;
 
     public wasTouched: boolean = false;
     public isOpen: boolean = false;
@@ -251,15 +258,11 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         if (!this.options) return;
 
         //
-        // Update content
-        this.updateContent(innerHTML, newValue);
-
-        //
         // Update manager active item
         this._updateKeyManagerActiveItem(newValue);
     }
 
-    onSelect(source: OptionComponent, isUserInput: boolean, innerHTML: string) {
+    onSelect(source: OptionComponent, isUserInput: boolean, innerHTML: string | null) {
         //
         // Validate value is different
         if (this.innerValue === source.value) return this.closePanel();
@@ -279,28 +282,6 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         //
         // Close
         this.closePanel();
-    }
-
-    updateContent(newInnerHTML: string | null, value: any) {
-        //
-        // Set innerHTML
-        let innerHTML: string = '';
-
-        //
-        // Get option inner html if not provided
-        // @TODO: find out why this.htmlValue changes from null to '' when we first click on the select trigger, this find runs for each select list at start and we don't need that
-        // possibly we would check and get inside this code only if newInnerHTML is null
-        if (!newInnerHTML) {
-            const option = this.options.find((option) => this.compareWith(option.value, value));
-            innerHTML = option?.contentElement?.nativeElement?.innerHTML || '';
-        }
-        //
-        // innerHTML provided
-        else {
-            innerHTML = newInnerHTML;
-        }
-
-        this.htmlValue = value ? innerHTML : null;
     }
 
     handleKeydown(event: KeyboardEvent) {

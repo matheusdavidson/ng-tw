@@ -19,7 +19,7 @@ export class OptionSelectionChange<T = any> {
         /** Whether the change in the option's value was a result of a user action. */
         public isUserInput: boolean = false,
         /** Content element */
-        public innerHTML: string = ''
+        public innerHTML: string | null = null
     ) {}
 }
 
@@ -48,6 +48,7 @@ export class OptionComponent<T = any> implements OnInit {
     @Input() public value: any;
     @Input() public disabled: boolean = false;
     @Input() public id: string = `tw-option-${_uniqueIdCounter++}`;
+    @Input() public textOnly: boolean = true;
 
     @Input() public useSelectedIndicator: boolean = true;
     @Input() public indicator: 'left' | 'right' | null = 'right';
@@ -62,7 +63,7 @@ export class OptionComponent<T = any> implements OnInit {
 
     /** Emits the selection change event. */
     private _emitSelectionChangeEvent(isUserInput = false): void {
-        this.onSelectionChange.emit(new OptionSelectionChange<T>(this, isUserInput, this.contentElement?.nativeElement?.innerHTML || ''));
+        this.onSelectionChange.emit(new OptionSelectionChange<T>(this, isUserInput, this.getInnerHTML()));
     }
 
     /** Selects the option. */
@@ -110,6 +111,10 @@ export class OptionComponent<T = any> implements OnInit {
     /** Gets the label to be used when determining whether the option should be focused. */
     getLabel(): string {
         return this.element.nativeElement.textContent ? this.element.nativeElement.textContent : '';
+    }
+
+    getInnerHTML(forceHTML: boolean = false): string | null {
+        return this.textOnly === true && forceHTML === false ? this.getLabel() : this.contentElement?.nativeElement?.innerHTML || null;
     }
 
     /**
