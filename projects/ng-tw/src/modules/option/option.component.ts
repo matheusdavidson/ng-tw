@@ -129,7 +129,11 @@ export class OptionComponent<T = any> implements OnInit {
     }
 
     scrollIntoView() {
-        if (typeof this.element.nativeElement.scrollIntoView !== 'undefined') this.element.nativeElement.scrollIntoView();
+        // @TODO: center scrolling is not supported widely, check for alternative solution or polyfill
+        if (typeof this.element.nativeElement.scrollIntoView !== 'undefined')
+            this.element.nativeElement.scrollIntoView({
+                block: 'center',
+            });
     }
 
     setActiveStylesWithDelay(): void {
