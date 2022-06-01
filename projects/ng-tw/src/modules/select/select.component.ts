@@ -232,7 +232,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
     selectOption(newValue: any, innerHTML: string | null, touched: boolean, forceUpdate = false) {
         //
         // Do nothing if selected is the same as the current value
-        if (this.compareWith(this.innerValue, newValue) && forceUpdate === false) return;
+        if (this.compareWith(this.innerValue, newValue) && forceUpdate === false) {
+            return;
+        }
 
         //
         // Set new value
@@ -265,7 +267,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         //
         // Loop options and deselect all except the selected one
         this.options.forEach((option) => {
-            if (option.id !== source.id) {
+            if (option.selected === true && option.id !== source.id) {
                 option.deselect();
             }
         });
@@ -298,7 +300,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
             innerHTML = newInnerHTML;
         }
 
-        this.htmlValue = value ? innerHTML : '';
+        this.htmlValue = value ? innerHTML : null;
     }
 
     handleKeydown(event: KeyboardEvent) {
@@ -362,12 +364,17 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
         // Update focus for different values
         if (!this.compareWith(manager.activeItem?.value, value)) {
             //
+            // Deselect current active item(which is the old one and will be changed ahead)
+            if (manager.activeItem?.selected === true) manager.activeItem?.deselect();
+
+            //
             // Find selected option index
             const correspondingOption = this.options.find((option: OptionComponent) => {
                 return option.value != null && this.compareWith(option.value, value);
             });
             // validate and update active item
             if (correspondingOption) manager.setActiveItem(correspondingOption);
+            else manager.setActiveItem(-1);
         }
     }
 

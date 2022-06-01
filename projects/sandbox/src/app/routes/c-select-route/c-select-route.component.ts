@@ -218,4 +218,16 @@ export class CSelectRouteComponent implements OnInit {
     compareWith(option: any, value: any): boolean {
         return option?.value && value?.value ? option.value === value.value : option === value;
     }
+
+    change(form: FormControl) {
+        form.value === 'value-1'
+            ? form.patchValue('value-4')
+            : form.value === 'value-4'
+            ? form.patchValue('value-2')
+            : form.patchValue('value-1');
+    }
+
+    reset(form: FormControl) {
+        form.reset();
+    }
 }
