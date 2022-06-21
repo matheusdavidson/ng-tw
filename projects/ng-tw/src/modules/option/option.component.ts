@@ -48,7 +48,7 @@ export class OptionComponent<T = any> implements OnInit {
     @Input() public value: any;
     @Input() public disabled: boolean = false;
     @Input() public id: string = `tw-option-${_uniqueIdCounter++}`;
-    @Input() public textOnly: boolean = true;
+    @Input() public textOnly: boolean | string = true;
 
     @Input() public useSelectedIndicator: boolean = true;
     @Input() public indicator: 'left' | 'right' | null = 'right';
@@ -110,11 +110,22 @@ export class OptionComponent<T = any> implements OnInit {
 
     /** Gets the label to be used when determining whether the option should be focused. */
     getLabel(): string {
-        return this.element.nativeElement.textContent ? this.element.nativeElement.textContent : '';
+        //
+        // Hold element
+        let element: HTMLElement = this.element.nativeElement;
+
+        //
+        // When textOnly is a string it means we have a selector to use
+        if (typeof this.textOnly === 'string') {
+            const elementForTextonly: HTMLElement | null = element.querySelector(this.textOnly);
+            if (elementForTextonly) element = elementForTextonly;
+        }
+
+        return element.textContent ? element.textContent : '';
     }
 
     getInnerHTML(forceHTML: boolean = false): string | null {
-        return this.textOnly === true && forceHTML === false ? this.getLabel() : this.contentElement?.nativeElement?.innerHTML || null;
+        return this.textOnly !== false && forceHTML === false ? this.getLabel() : this.contentElement?.nativeElement?.innerHTML || null;
     }
 
     /**

@@ -147,6 +147,33 @@
                         selectedClass="font-bold"
                         *ngFor="let item of options"
                         [value]="item.value"
+                        textOnly="div[teste]"
+                    >
+                        {{item.label}} <div teste>teste</div>
+                    </tw-option>
+                </tw-select>
+            </div>
+
+            <div class="md:flex-1">
+                Selected Value: {{ selectWithInputControl.value ? selectWithInputControl.value : '---' }}
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <div class="demo-row-title">With NgModel</div>
+
+            <div class="demo-row-content md:flex-1">
+                <tw-select
+                    class="w-64 max-w-full"
+                    [(ngModel)]="selectWithModel"
+                    [ngModelOptions]="{standalone: true}"
+                >
+                    <tw-option>Select an option</tw-option>
+                    <tw-option
+                        activeClass="bg-gray-100"
+                        selectedClass="font-bold"
+                        *ngFor="let item of options"
+                        [value]="item.value"
                     >
                         {{item.label}}
                     </tw-option>
@@ -154,7 +181,7 @@
             </div>
 
             <div class="md:flex-1">
-                Selected Value: {{ selectWithInputControl.value ? selectWithInputControl.value : '---' }}
+                Selected Value: {{ selectWithModel ? selectWithModel : '---' }}
             </div>
         </div>
     </div>

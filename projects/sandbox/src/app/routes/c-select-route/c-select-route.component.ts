@@ -208,6 +208,7 @@ export class CSelectRouteComponent implements OnInit {
     public selectCompareWithControl: FormControl = new FormControl({ value: null, disabled: false });
     public selectCompareWithInitialValueControl: FormControl = new FormControl({ value: null, disabled: false });
     public selectWithInputControl: FormControl = new FormControl({ value: null, disabled: false });
+    public selectWithModel: string = 'value-1';
 
     constructor() {}
 
