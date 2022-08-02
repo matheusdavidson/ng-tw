@@ -28,6 +28,32 @@ export class CNotificationRouteComponent implements OnInit {
         \`\`\`
     `;
 
+    public markdownUsageSegment: string = 'html';
+    public markdownUsageHTML = `
+        \`\`\`html
+        <button
+            tw-button
+            (click)="openNotification()"
+        >
+            Show notification
+        </button>
+        \`\`\`
+    `;
+
+    public markdownUsageTS = `
+        \`\`\`ts
+        constructor(private readonly notification: TwNotification) {}
+
+        showNotification() {
+            // 
+            // Create notification properties
+            const notification: TwNotificationData = { type: 'success', title: 'Success', text: 'This is a success notification' };
+            // show notification
+            this.notification.show(notification);
+        }
+        \`\`\`
+    `;
+
     constructor(private readonly notification: TwNotification) {}
 
     ngOnInit(): void {}
