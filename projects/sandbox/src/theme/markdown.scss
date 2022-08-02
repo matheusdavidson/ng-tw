@@ -2,7 +2,85 @@
 /* Markdown Styles */
 /* Global */
 markdown {
-    @apply leading-relaxed text-sm;
+    @apply leading-relaxed text-sm max-h-96 block overflow-y-auto;
+
+    &:not(.has-tabs) {
+        @apply rounded mt-4;
+    }
+
+    &.has-tabs {
+        @apply rounded-b;
+    }
+
+    pre[class*='language-'] {
+        border-radius: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        &::-webkit-scrollbar {
+            height: 5px;
+            overflow: visible;
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-button {
+            height: 0;
+            width: 0;
+        }
+
+        &::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 215, 0, 0.5);
+            background-clip: padding-box;
+            border: solid transparent;
+            border-width: 1px 1px 1px 1px;
+            min-height: 28px;
+            padding: 100px 0 0;
+            -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+            box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+        }
+
+        &::-webkit-scrollbar-track {
+            background-clip: padding-box;
+            border: solid #272822;
+            border-width: 0 0 0 5px;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        height: 16px;
+        overflow: visible;
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-button {
+        height: 0;
+        width: 0;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 215, 0, 0.5);
+        background-clip: padding-box;
+        border: solid transparent;
+        border-width: 1px 1px 1px 1px;
+        min-height: 28px;
+        padding: 100px 0 0;
+        -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+        box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    &::-webkit-scrollbar-track {
+        background-clip: padding-box;
+        border: solid #272822;
+        border-width: 0 0 0 5px;
+    }
 }
 
 @screen sm {
@@ -70,10 +148,12 @@ markdown ul {
     @apply list-disc;
 }
 /* Blockquotes */
-markdown blockquote {
+markdown blockquote,
+blockquote {
     @apply p-4 mb-4 border-l-4 border-gray-400 bg-gray-100 italic;
 }
-markdown blockquote > p {
+markdown blockquote > p,
+blockquote > p {
     @apply mb-0 #{!important};
 }
 /* Tables */
