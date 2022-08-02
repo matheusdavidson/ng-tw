@@ -33,7 +33,7 @@ export class CNotificationRouteComponent implements OnInit {
         \`\`\`html
         <button
             tw-button
-            (click)="openNotification()"
+            (click)="showNotification()"
         >
             Show notification
         </button>
