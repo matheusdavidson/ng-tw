@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { cloneDeep } from 'lodash';
 
 @Component({
@@ -203,11 +203,11 @@ export class CSelectRouteComponent implements OnInit {
 
     public optionsForWithInput: any[] = [];
 
-    public selectControl: FormControl = new FormControl({ value: 'value-1', disabled: false });
-    public selectCustomArrowControl: FormControl = new FormControl({ value: null, disabled: false });
-    public selectCompareWithControl: FormControl = new FormControl({ value: null, disabled: false });
-    public selectCompareWithInitialValueControl: FormControl = new FormControl({ value: null, disabled: false });
-    public selectWithInputControl: FormControl = new FormControl({ value: null, disabled: false });
+    public selectControl: UntypedFormControl = new UntypedFormControl({ value: 'value-1', disabled: false });
+    public selectCustomArrowControl: UntypedFormControl = new UntypedFormControl({ value: null, disabled: false });
+    public selectCompareWithControl: UntypedFormControl = new UntypedFormControl({ value: null, disabled: false });
+    public selectCompareWithInitialValueControl: UntypedFormControl = new UntypedFormControl({ value: null, disabled: false });
+    public selectWithInputControl: UntypedFormControl = new UntypedFormControl({ value: null, disabled: false });
     public selectWithModel: string = 'value-1';
 
     constructor() {}
@@ -220,7 +220,7 @@ export class CSelectRouteComponent implements OnInit {
         return option?.value && value?.value ? option.value === value.value : option === value;
     }
 
-    change(form: FormControl) {
+    change(form: UntypedFormControl) {
         form.value === 'value-1'
             ? form.patchValue('value-4')
             : form.value === 'value-4'
@@ -228,7 +228,7 @@ export class CSelectRouteComponent implements OnInit {
             : form.patchValue('value-1');
     }
 
-    reset(form: FormControl) {
+    reset(form: UntypedFormControl) {
         form.reset();
     }
 }

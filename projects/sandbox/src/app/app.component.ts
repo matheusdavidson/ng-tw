@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -76,9 +76,9 @@ export class AppComponent {
 
     public disabled: boolean = false;
 
-    public selectControl: FormControl = new FormControl({ value: 'value-1', disabled: false });
-    public selectCompareWithControl: FormControl = new FormControl({ value: null, disabled: false });
-    public selectCompareWithInitialValueControl: FormControl = new FormControl({ value: null, disabled: false });
+    public selectControl: UntypedFormControl = new UntypedFormControl({ value: 'value-1', disabled: false });
+    public selectCompareWithControl: UntypedFormControl = new UntypedFormControl({ value: null, disabled: false });
+    public selectCompareWithInitialValueControl: UntypedFormControl = new UntypedFormControl({ value: null, disabled: false });
     // public selectCompareWithInitialValueControl: FormControl = new FormControl({ value: this.options[3], disabled: false });
 
     constructor() {
