@@ -34,8 +34,8 @@
     "express": "^4.15.2",
     "lodash": "^4.17.21",
     "ngx-google-analytics": "^13.0.1",
-    "ngx-markdown": "^13.1.0",
-    "prismjs": "^1.27.0",
+    "ngx-markdown": "^15.0.0",
+    "prismjs": "^1.29.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
