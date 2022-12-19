@@ -206,7 +206,7 @@ export class SelectComponent implements ControlValueAccessor, OnInit, AfterConte
 
         //
         // Set aria-disabled
-        this.trigger.nativeElement.setAttribute('aria-disabled', isDisabled.toString());
+        this.trigger?.nativeElement.setAttribute('aria-disabled', isDisabled.toString());
     }
 
     openPanel() {
