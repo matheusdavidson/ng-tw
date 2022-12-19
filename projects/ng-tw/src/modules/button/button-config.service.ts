@@ -42,7 +42,7 @@ export class TwButtonConfigService {
                 secondary: 'hover:bg-secondary-50 text-secondary',
                 danger: 'hover:bg-danger-50 text-danger',
                 tailwind: 'hover:bg-{color}-50 text-{color}-600',
-                global: 'border-transparent',
+                global: 'border-transparent focus:outline-0',
                 ignore: '',
             },
             raised: {
@@ -51,7 +51,7 @@ export class TwButtonConfigService {
                 secondary: 'text-white bg-secondary',
                 danger: 'text-white bg-danger',
                 tailwind: 'text-white bg-{color}-600',
-                global: 'border-transparent shadow-sm hover:active:shadow-lg',
+                global: 'border-transparent shadow-sm hover:active:shadow-lg focus:outline-0',
                 ignore: '',
             },
             stroked: {
@@ -60,7 +60,7 @@ export class TwButtonConfigService {
                 secondary: 'text-secondary hover:bg-secondary-100',
                 danger: 'text-danger hover:bg-danger-100',
                 tailwind: 'text-{color}-600 hover:bg-{color}-200',
-                global: 'bg-transparent border border-gray-200',
+                global: 'bg-transparent border border-gray-200 focus:outline-0',
                 ignore: '',
             },
             flat: {
