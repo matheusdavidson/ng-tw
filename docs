@@ -1,3 +1,15 @@
+## [0.0.14](https://github.com/matheusdavidson/ng-tw/compare/v0.0.15...v0.0.14) (2022-12-19)
+
+
+### Bug Fixes
+
+* **button:** remove focus outline ([530551e](https://github.com/matheusdavidson/ng-tw/commit/530551e98fa1b7182278d84ace7bc919a647bd06))
+* **ng:** --prod is deprecated ([9abccc6](https://github.com/matheusdavidson/ng-tw/commit/9abccc61f22185f99c22f6a47646e7f154b2ed30))
+* **notification/usage:** fix doc typo [[#13](https://github.com/matheusdavidson/ng-tw/issues/13)] ([4d886ff](https://github.com/matheusdavidson/ng-tw/commit/4d886ff8c881c24ad0605f676e47f4ea7436ebf8))
+* **select:** Cannot read properties of undefined (reading 'nativeElement') ([691df46](https://github.com/matheusdavidson/ng-tw/commit/691df46712820497fcd0d8ac8d1603ab49c89bff))
+
+
+
 ## [0.0.10](https://github.com/matheusdavidson/ng-tw/compare/v0.0.9...v0.0.10) (2022-05-31)
 
 

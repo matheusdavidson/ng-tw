@@ -5,7 +5,7 @@
         "outDir": "./.compiled",
         "sourceMap": false,
         "types": ["node"],
-        "target": "es2017",
+        "target": "ES2022",
         "module": "commonjs"
     },
     "include": ["**/*.ts"],

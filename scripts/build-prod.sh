@@ -1,1 +1,1 @@
-ng build ng-tw --prod
+ng build ng-tw --configuration production
