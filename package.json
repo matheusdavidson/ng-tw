@@ -33,7 +33,7 @@
     "@nguniversal/express-engine": "^15.0.0",
     "express": "^4.15.2",
     "lodash": "^4.17.21",
-    "ngx-google-analytics": "^13.0.1",
+    "ngx-google-analytics": "^14.0.1",
     "ngx-markdown": "^15.0.0",
     "prismjs": "^1.29.0",
     "rxjs": "~7.4.0",
