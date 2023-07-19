@@ -1,17 +1,18 @@
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { isEmpty, merge } from 'lodash';
+import { TwInputConfig } from './input-config.interface';
 
 /**
  * This is not a real service, but it looks like it from the outside.
  * It's just an InjectionTToken used to import the config object, provided from the outside
  */
-export const TwInputSetup = new InjectionToken<any>('TwInputConfig');   // TODO: change any type
+export const TwInputSetup = new InjectionToken<TwInputConfig>('TwInputConfig');
 
 @Injectable({
     providedIn: 'root',
 })
 export class TwInputConfigService {
-    public config: any = {  // TODO: change any type
+    public config: TwInputConfig = {
         global: 'focus:outline-none rounded',
         font: {
             weight: 'font-medium',
@@ -41,7 +42,7 @@ export class TwInputConfigService {
         },
     };
 
-    constructor(@Optional() @Inject(TwInputSetup) public options: any) {    // TODO: change any type
+    constructor(@Optional() @Inject(TwInputSetup) public options: TwInputConfig) {
         //
         // Validate
         if (isEmpty(options)) return;
