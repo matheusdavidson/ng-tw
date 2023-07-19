@@ -200,5 +200,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
