@@ -1,4 +1,4 @@
-import { Attribute, Component, HostBinding, Input, forwardRef } from '@angular/core';
+import { Attribute, Component, ElementRef, HostBinding, Input, ViewChild, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TwInputConfig } from './input-config.interface';
 import { TwInputConfigService } from './input-config.service';
@@ -24,20 +24,21 @@ export class InputComponent implements ControlValueAccessor {
 
   private config: TwInputConfig = this.inputConfig.config;
 
+  @ViewChild('field') input!: ElementRef;
+
   constructor(
     @Attribute('id') public id: string,
     @Attribute('type') public type: string,
     private readonly inputConfig: TwInputConfigService
-  ) {
-    //
-    // Get config according to inputs
-    const classes: string[] = this.setup();
+  ) {}
 
-    this.classes = classes.join(' ');
+  ngAfterViewInit() {
+    const classes: string[] = this.setup();
+    this.input.nativeElement.className = classes.join(' ');
   }
 
   @HostBinding('class') classes!: string;
-
+  
   @Input() public label!: string;
   @Input() public placeholder!: string;
 
