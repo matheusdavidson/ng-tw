@@ -5,7 +5,6 @@ export interface TwInputConfig {
     };
     layout: {
         basic: {
-            basic: string;
             tailwind: string;
             global: string;
             ignore: string;

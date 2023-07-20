@@ -3,8 +3,8 @@
 	"version": "0.0.15",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve --proejct ng-tw",
-		"build": "ng build --proejct ng-tw",
+		"start": "ng serve --project ng-tw",
+		"build": "ng build --project ng-tw",
 		"watch": "ng build --project ng-tw --watch --configuration development",
 		"test": "ng test",
 		"release:major": "cd ./scripts && npm run release:major",
