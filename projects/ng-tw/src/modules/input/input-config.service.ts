@@ -20,8 +20,8 @@ export class TwInputConfigService {
         layout: {
             basic: {
                 // TODO: figure out what these do
-                tailwind: 'hover:bg-{color}-50 text-{color}-600',
-                global: 'border-transparent focus:outline-0 block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+                tailwind: 'text-{color}-600',
+                global: 'border-transparent focus:outline-0 block w-full p-4 text-gray-900 border border-gray-300 rounded-lg sm:text-md focus:ring-blue-500 focus:border-blue-500',
                 ignore: '',
             }
         },

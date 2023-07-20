@@ -41,10 +41,10 @@ export class InputComponent implements ControlValueAccessor {
   @Input() public label!: string;
   @Input() public placeholder!: string;
 
-  private _value: string = '';
+  public _value: string = '';
 
-  private onTouchedCallback: () => void = noOp;
-  private onChangeCallback: (_: any) => void = noOp;
+  onChange = (value: any) => {};
+  onTouched = () => {};
 
   private setup(): string[] {
     //
@@ -115,7 +115,7 @@ export class InputComponent implements ControlValueAccessor {
     return classes;
   }
 
-getSizeClasses() {
+  getSizeClasses() {
     //
     // Get size config
     const config: any = this.config.sizes[this.size];
@@ -149,7 +149,7 @@ getSizeClasses() {
   set value(v: string) {
     if (v !== this._value) {
       this._value = v;
-      this.onChangeCallback(v);
+      this.onChange(v);
     }
   }
 
@@ -160,15 +160,15 @@ getSizeClasses() {
   }
 
   registerOnChange(fn: any): void {
-    this.onChangeCallback = fn;
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
+    this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+  handleInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.onChange(value);
   }
-
 }
