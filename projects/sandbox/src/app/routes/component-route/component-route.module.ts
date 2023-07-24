@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'select',
         loadChildren: () => import('../../routes/c-select-route/c-select-route.module').then((m) => m.CSelectRouteModule),
     },
+    {
+        path: 'radio',
+        loadChildren: () => import('../../routes/c-radio-route/c-radio-route.module').then((m) => m.CRadioRouteModule)
+    }
 ];
 
 @NgModule({
