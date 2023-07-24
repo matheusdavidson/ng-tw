@@ -1,0 +1,9 @@
+<fieldset class="mt-4">
+    <legend class="sr-only">{{label}}</legend>
+    <div class="space-y-4">
+        <div class="flex items-center" *ngFor="let item of items" (click)="change(item.value)">
+            <input type="radio" [value]="item.value" [checked]="item.value === value" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+            <label for="email" class="ml-3 block text-sm font-medium leading-6 text-gray-900">{{item.name}}</label>
+        </div>
+    </div>
+</fieldset>
