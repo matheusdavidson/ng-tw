@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'select',
         loadChildren: () => import('../../routes/c-select-route/c-select-route.module').then((m) => m.CSelectRouteModule),
     },
+    {
+        path: 'checkbox',
+        loadChildren: () => import('../../routes/c-checkbox-route/c-checkbox-route.module').then((m) => m.CCheckboxRouteModule)
+    }
 ];
 
 @NgModule({
