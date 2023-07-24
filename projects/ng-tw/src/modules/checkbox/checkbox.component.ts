@@ -16,6 +16,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   constructor(
     @Attribute('id') public id: string,
     @Attribute('label') public label: string,
+    @Attribute('toggle') public isToggle: boolean,
     private renderer: Renderer2
   ) {}
 

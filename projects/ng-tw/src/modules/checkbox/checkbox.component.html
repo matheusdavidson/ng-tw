@@ -1,4 +1,15 @@
-<div class="flex items-center mb-4">
-    <input [id]="id" type="checkbox" [checked]="value" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" (blur)="onTouched()" (change)="toggleValue()" #checkbox>
-    <label [for]="id" class="ml-2 text-sm font-medium text-gray-900">{{label}}</label>
-</div>
+<ng-template [ngIf]="isToggle" [ngIfElse]="elseBlock">
+    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+    <button type="button" [ngClass]="value ? 'bg-indigo-600' : 'bg-gray-200'" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" (blur)="onTouched()" (click)="toggleValue()">
+        <span class="sr-only">{{label}}</span>
+    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+        <span aria-hidden="true" [ngClass]="value ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+    </button>
+</ng-template>
+
+<ng-template #elseBlock>
+    <div class="flex items-center mb-4">
+        <input [id]="id" type="checkbox" [checked]="value" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" (blur)="onTouched()" (change)="toggleValue()" #checkbox>
+        <label [for]="id" class="ml-2 text-sm font-medium text-gray-900">{{label}}</label>
+    </div>
+</ng-template>
