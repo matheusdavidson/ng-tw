@@ -31,3 +31,7 @@ export * from './modules/dropdown/dropdown.component';
 export * from './modules/dropdown/dropdown.module';
 export * from './modules/dropdown/dropdown-config.interface';
 export * from './modules/dropdown/dropdown-config.service';
+
+export * from './modules/radio/radio-button-item.interface';
+export * from './modules/radio/radio.component';
+export * from './modules/radio/radio.module';
