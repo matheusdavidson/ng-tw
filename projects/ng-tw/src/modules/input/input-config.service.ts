@@ -21,13 +21,13 @@ export class TwInputConfigService {
             basic: {
                 // TODO: figure out what these do
                 tailwind: 'text-{color}-600',
-                global: 'border-transparent focus:outline-0 block w-full p-4 text-gray-900 border border-gray-300 rounded-lg sm:text-md focus:ring-blue-500 focus:border-blue-500',
+                global: 'border-transparent focus:outline-0 block w-full text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500',
                 ignore: '',
             }
         },
         sizes: {
             sm: {
-                class: 'p-2 sm:text-xs',
+                class: 'p-2 text-xs',
                 ignore: '',
             },
             md: {
@@ -35,7 +35,7 @@ export class TwInputConfigService {
                 ignore: '',
             },
             lg: {
-                class: 'p-4 sm:text-md',
+                class: 'p-4 text-md',
                 ignore: '',
             }
         },
