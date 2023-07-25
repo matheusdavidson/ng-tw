@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'select',
         loadChildren: () => import('../../routes/c-select-route/c-select-route.module').then((m) => m.CSelectRouteModule),
     },
+    {
+        path: 'input',
+        loadChildren: () => import('../../routes/c-input-route/c-input-route.module').then((m) => m.CInputRouteModule)
+    }
 ];
 
 @NgModule({

@@ -70,6 +70,10 @@ export class AppComponent {
                     label: 'Select',
                     link: '/components/select',
                 },
+                {
+                    label: 'Input',
+                    link: '/components/input'
+                }
             ],
         },
     ];
