@@ -1,51 +1,29 @@
-import { Attribute, Component, ElementRef, HostBinding, Input, ViewChild, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, ElementRef, Input } from '@angular/core';
 import { TwInputConfig } from './input-config.interface';
 import { TwInputConfigService } from './input-config.service';
 import { difference } from 'lodash';
 
-const noOp = () => {};
-
 @Component({
-  selector: 'tw-input',
+  selector: '[tw-input]',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => InputComponent),
-    multi: true
-  }]
+  styleUrls: ['./input.component.css']
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent {
   @Input() class: string = '';
   @Input() public layout: 'basic' = 'basic';
   @Input() public size: 'sm' | 'md' | 'lg' = 'md';
   @Input() public ignore: string = '';
 
   private config: TwInputConfig = this.inputConfig.config;
-
-  @ViewChild('field') input!: ElementRef;
-
   constructor(
-    @Attribute('id') public id: string,
-    @Attribute('type') public type: string,
+    private el: ElementRef,
     private readonly inputConfig: TwInputConfigService
   ) {}
 
   ngAfterViewInit() {
     const classes: string[] = this.setup();
-    this.input.nativeElement.className = classes.join(' ');
+    this.el.nativeElement.className = classes.join(' ');
   }
-
-  @HostBinding('class') classes!: string;
-  
-  @Input() public label!: string;
-  @Input() public placeholder!: string;
-
-  public _value: string = '';
-
-  onChange = (value: any) => {};
-  onTouched = () => {};
 
   private setup(): string[] {
     //
@@ -143,33 +121,4 @@ export class InputComponent implements ControlValueAccessor {
     return classes.filter((item: string) => item);
   }
 
-  get value(): string {
-    return this._value;
-  }
-
-  set value(v: string) {
-    if (v !== this._value) {
-      this._value = v;
-      this.onChange(v);
-    }
-  }
-
-  writeValue(v: any): void {
-    if (v !== this._value) {
-      this._value = v;
-    }
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  handleInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.onChange(value);
-  }
 }
