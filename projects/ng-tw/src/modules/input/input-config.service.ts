@@ -21,7 +21,7 @@ export class TwInputConfigService {
             basic: {
                 // TODO: figure out what these do
                 tailwind: 'text-{color}-600',
-                global: 'border-transparent focus:outline-0 block w-full text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500',
+                global: 'focus:outline-0 block w-full text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500',
                 ignore: '',
             }
         },
