@@ -1,0 +1,15 @@
+<nav class="side-navigation-container">
+    <p class="title">On this page</p>
+    <ul>
+        <li *ngFor="let item of navigation">
+            <a
+                [routerLink]="[item.link]"
+                [routerLinkActive]="'active'"
+                [routerLinkActiveOptions]="{ matrixParams: 'exact', queryParams: 'exact', paths: 'exact', fragment: 'exact' }"
+                [fragment]="item.fragment || null"
+            >
+                {{ item.label }}
+            </a>
+        </li>
+    </ul>
+</nav>
