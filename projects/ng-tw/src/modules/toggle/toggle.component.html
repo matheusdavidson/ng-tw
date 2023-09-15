@@ -1,0 +1,10 @@
+<div class="flex items-center">
+    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+    <button type="button" [ngClass]="value ? getEnabledColor() : 'bg-gray-200'" [class]="getPillClasses()" role="switch" aria-checked="false" (blur)="onTouched()" (click)="toggleValue()">
+    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+        <span aria-hidden="true" [ngClass]="value ? 'translate-x-5' : 'translate-x-0'" [class]="getSliderClasses()"></span>
+    </button>
+    <span class="ml-3 text-sm" *ngIf="label">
+        <span class="font-medium text-gray-900">{{label}}</span>
+    </span>
+</div>

@@ -1,0 +1,4 @@
+<div class="flex items-center mb-4">
+    <input [id]="id" type="checkbox" [checked]="value" [class]="getClasses()" (blur)="onTouched()" (change)="toggleValue()" #checkbox>
+    <label [for]="id" class="ml-2 text-sm font-medium text-gray-900" *ngIf="label">{{label}}</label>
+</div>

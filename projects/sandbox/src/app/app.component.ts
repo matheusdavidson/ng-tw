@@ -70,6 +70,14 @@ export class AppComponent {
                     label: 'Select',
                     link: '/components/select',
                 },
+                {
+                    label: 'Checkbox',
+                    link: '/components/checkbox',
+                },
+                {
+                    label: 'Toggle',
+                    link: '/components/toggle'
+                }
             ],
         },
     ];
