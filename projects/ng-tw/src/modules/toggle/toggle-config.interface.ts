@@ -1,7 +1,7 @@
 export interface TwToggleConfig {
-    global: string,
+    pillGlobal: string,
+    sliderGlobal: string,
     color: {
-        default: string,
-        focus: string
+        enabled: string
     }
 }
