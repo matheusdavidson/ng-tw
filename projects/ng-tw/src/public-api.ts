@@ -34,6 +34,10 @@ export * from './modules/dropdown/dropdown-config.service';
 
 export * from './modules/checkbox/checkbox.component';
 export * from './modules/checkbox/checkbox.module';
+export * from './modules/checkbox/checkbox-config.interface';
+export * from './modules/checkbox/checkbox-config.service';
 
 export * from './modules/toggle/toggle.component';
 export * from './modules/toggle/toggle.module';
+export * from './modules/toggle/toggle-config.interface';
+export * from './modules/toggle/toggle-config.service';
