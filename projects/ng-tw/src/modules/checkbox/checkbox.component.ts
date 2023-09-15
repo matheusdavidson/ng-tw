@@ -1,5 +1,7 @@
 import { Attribute, Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TwCheckboxConfig } from './checkbox-config.interface';
+import { TwCheckboxConfigService } from './checkbox-config.service';
 
 @Component({
   selector: 'tw-checkbox',
@@ -16,9 +18,37 @@ export class CheckboxComponent implements ControlValueAccessor {
   constructor(
     @Attribute('id') public id: string,
     @Attribute('label') public label: string,
+    private readonly checkboxConfig: TwCheckboxConfigService
   ) {}
 
+  @Input() class: string = '';
+  @Input() public color: string = '';
+  @Input() public focusColor: string = '';
   @Input() value!: boolean;
+
+  private _config: TwCheckboxConfig = this.checkboxConfig.config;
+
+  getClasses(): string {
+    //
+    // hold classes
+    let classes: string[] = [];
+
+    classes.push(...this._config.global.split(' '));
+
+    if (this.color) {
+      classes.push(this.color)
+    } else {
+      classes.push(this._config.color.default)
+    }
+
+    if (this.focusColor) {
+      classes.push(this.focusColor)
+    } else {
+      classes.push(this._config.color.focus)
+    }
+
+    return classes.length ? classes.join(' ') : '';
+  }
 
   onChange = (value: boolean) => {};
   onTouched = () => {};
