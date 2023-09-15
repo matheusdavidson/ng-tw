@@ -2,22 +2,23 @@ import { Attribute, Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'tw-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.css'],
+  selector: 'tw-toggle',
+  templateUrl: './toggle.component.html',
+  styleUrls: ['./toggle.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CheckboxComponent),
+    useExisting: forwardRef(() => ToggleComponent),
     multi: true
   }]
 })
-export class CheckboxComponent implements ControlValueAccessor {
+export class ToggleComponent implements ControlValueAccessor {
 
   constructor(
     @Attribute('id') public id: string,
     @Attribute('label') public label: string,
+    @Attribute('disabled') public disabled: boolean,
   ) {}
-
+  
   @Input() value!: boolean;
 
   onChange = (value: boolean) => {};

@@ -74,6 +74,10 @@ export class AppComponent {
                     label: 'Checkbox',
                     link: '/components/checkbox',
                 },
+                {
+                    label: 'Toggle',
+                    link: '/components/toggle'
+                }
             ],
         },
     ];

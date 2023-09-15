@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-c-notification-route',
-    templateUrl: './c-checkbox-route.component.html',
-    styleUrls: ['./c-checkbox-route.component.scss'],
+    templateUrl: './c-toggle-route.component.html',
+    styleUrls: ['./c-toggle-route.component.scss'],
 })
-export class CCheckboxRouteComponent implements OnInit {
+export class CToggleRouteComponent implements OnInit {
     public bottomNavigation: any = {
         first: {
             label: 'Dropdown',
@@ -19,10 +19,10 @@ export class CCheckboxRouteComponent implements OnInit {
 
     public markdownLoad = `
         \`\`\`typescript
-        import { TwCheckboxModule } from 'ng-tw';
+        import { TwToggleModule } from 'ng-tw';
 
         @NgModule({
-            imports: [..., TwCheckboxModule],
+            imports: [..., TwToggleModule],
         });
         \`\`\`
     `;
@@ -30,9 +30,9 @@ export class CCheckboxRouteComponent implements OnInit {
     public markdownUsageSegment: string = 'html';
     public markdownUsageHTML = `
         \`\`\`html
-        <tw-checkbox></tw-checkbox>
+        <tw-toggle></tw-toggle>
         <!-- or -->
-        <tw-checkbox label="Click me!"></tw-checkbox>
+        <tw-toggle label="Click me!"></tw-toggle>
         \`\`\`
     `;
 

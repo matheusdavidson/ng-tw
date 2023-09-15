@@ -27,6 +27,14 @@ export class IntroductionRouteComponent implements OnInit {
             label: 'Select',
             link: '/components/select',
         },
+        {
+            label: 'Checkbox',
+            link: '/components/checkbox'
+        },
+        {
+            label: 'Toggle',
+            link: '/components/toggle'
+        }
     ];
 
     public bottomNavigation: any = {

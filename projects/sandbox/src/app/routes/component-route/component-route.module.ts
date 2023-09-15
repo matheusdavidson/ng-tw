@@ -27,6 +27,10 @@ const routes: Routes = [
     {
         path: 'checkbox',
         loadChildren: () => import('../../routes/c-checkbox-route/c-checkbox-route.module').then((m) => m.CCheckboxRouteModule)
+    },
+    {
+        path: 'toggle',
+        loadChildren: () => import('../../routes/c-toggle-route/c-toggle-route.module').then((m) => m.CToggleRouteModule)
     }
 ];
 

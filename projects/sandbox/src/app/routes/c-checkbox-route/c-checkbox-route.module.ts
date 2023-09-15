@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CCheckboxRouteComponent } from './c-checkbox-route.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
-import { TwCheckboxModule } from 'ng-tw';
+import { TwCheckboxModule } from 'projects/ng-tw/src/public-api';
 import { CCheckboxSideRouteComponent } from '../c-checkbox-side-route/c-checkbox-side-route.component';
 
 const routes: Routes = [
